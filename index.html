@@ -22,8 +22,8 @@
   }
   #dots {
     position: relative;
-    width: 810px;
-    height: 690px;
+    width: 785px;
+    height: 720px;
   }
   .dot {
     position: absolute;
@@ -66,25 +66,25 @@
    ========================================================== */
 
 const dots = [
-  { x:221.1, y:248.1, r:67.2, color:'#01A972', topic:'Sobre Nós',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/18e35suwTon3NKNZAHUoz7AkDXHQ90hlf/edit' },
-  { x:395.7, y:248.1, r:68.4, color:'#01A972', topic:'Estrutura',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1gyee1MjczRLJNfmNdDPTizVZYiLAiMiD/edit' },
-  { x:583.8, y:248.1, r:68.4, color:'#01A972', topic:'Políticas e Compliance', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/14D-gnr6EIeGVN-a5QBiET5WVNkaQdkxZ/edit' },
-  { x:301.8, y:422.7, r:69.9, color:'#01A972', topic:'Pessoas',                url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1hKc0KxPEdmBR1AxcR3SuPccs5jC4Ak61/edit' },
-  { x:489.9, y:422.7, r:69.9, color:'#01A972', topic:'Redes Sociais',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1BFUI1XI5KVolZHxRhpVwIDcBaPZRp_eL/edit' },
+  { x:208.3, y:273.4, r:65.5, color:'#01A972', topic:'Sobre Nós',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/18e35suwTon3NKNZAHUoz7AkDXHQ90hlf/edit' },
+  { x:399.7, y:273.4, r:65.7, color:'#01A972', topic:'Estrutura',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1gyee1MjczRLJNfmNdDPTizVZYiLAiMiD/edit' },
+  { x:591.1, y:273.4, r:65.7, color:'#01A972', topic:'Políticas e Compliance', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/14D-gnr6EIeGVN-a5QBiET5WVNkaQdkxZ/edit' },
+  { x:304.0, y:463.2, r:65.5, color:'#01A972', topic:'Pessoas',                url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1hKc0KxPEdmBR1AxcR3SuPccs5jC4Ak61/edit' },
+  { x:495.4, y:463.2, r:65.7, color:'#01A972', topic:'Redes Sociais',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1BFUI1XI5KVolZHxRhpVwIDcBaPZRp_eL/edit' },
 ];
 
 const decorative = [
-  { x:301.8, y:60.0,  r:67.2, color:'#80D4B9' },
-  { x:489.9, y:60.0,  r:68.4, color:'#80D4B9' },
-  { x:113.7, y:422.7, r:67.2, color:'#80D4B9' },
-  { x:678.0, y:422.7, r:68.4, color:'#80D4B9' },
-  { x:395.7, y:610.8, r:67.2, color:'#80D4B9' },
-  { x:153.9, y:100.2, r:34.8, color:'#80D4B9' },
-  { x:651.0, y:100.2, r:34.8, color:'#80D4B9' },
-  { x:60.0,  y:274.8, r:34.8, color:'#80D4B9' },
-  { x:745.2, y:274.8, r:34.8, color:'#80D4B9' },
-  { x:248.1, y:583.8, r:36.3, color:'#80D4B9' },
-  { x:557.1, y:583.8, r:36.3, color:'#80D4B9' },
+  { x:304.0, y:85.3,  r:65.3 },
+  { x:495.4, y:85.3,  r:65.3 },
+  { x:144.0, y:118.3, r:33.2 },
+  { x:655.5, y:118.3, r:33.5 },
+  { x:51.5,  y:306.4, r:31.5 },
+  { x:751.1, y:306.4, r:33.2 },
+  { x:112.6, y:463.2, r:65.3 },
+  { x:686.8, y:463.2, r:65.3 },
+  { x:239.6, y:618.3, r:33.2 },
+  { x:559.7, y:618.3, r:33.3 },
+  { x:399.7, y:651.3, r:65.0 },
 ];
 
 const container = document.getElementById('dots');
@@ -103,7 +103,7 @@ decorative.forEach((d) => {
   el.style.top = (d.y - d.r) + 'px';
   el.style.width = (d.r*2) + 'px';
   el.style.height = (d.r*2) + 'px';
-  el.style.background = d.color;
+  el.style.background = '#80D4B9';
   el.style.opacity = '0.5';
   el.style.animationDelay = delay + 's';
   delay += 0.15;
