@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Treinamentos Obrigatórios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: transparent;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #frame {
+    box-sizing: border-box;
+    border: 1px solid rgba(182, 254, 128, 0.35);
+    border-radius: 24px;
+    padding: 6%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #wrapper {
+    width: 100%;
+  }
+  #dots {
+    position: relative;
+    width: 100%;
+    padding-bottom: 31.71%; /* mant\u00e9m a propor\u00e7\u00e3o do canvas (260/820) */
+    height: 0;
+  }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.15;
+    animation: floaty 3s ease-in-out infinite;
+    transition: transform 0.15s;
+  }
+  .dot.clickable {
+    cursor: pointer;
+    font-size: clamp(9px, 2.4vw, 14px);
+    font-weight: 800;
+    padding: 4%;
+    text-decoration: none;
+    white-space: pre-line;
+    box-sizing: border-box;
+  }
+  .dot.clickable:hover {
+    transform: scale(1.08);
+  }
+  .dot.clickable {
+    background: #01A972 !important;
+    color: #B6FE80 !important;
+  }
+  .dot.clickable:visited {
+    background: #B6FE80 !important;
+    color: #003F2E !important;
+  }
+  .dot.clickable .check {
+    display: none;
+    font-size: 1.4em;
+    margin-bottom: 4px;
+  }
+  .dot.clickable:visited .check {
+    display: block;
+  }
+  @keyframes floaty {
+    0%, 100% { margin-top: 0px; }
+    50% { margin-top: -3%; }
+  }
+</style>
+</head>
+<body>
+
+<div id="frame">
+  <div id="wrapper">
+    <div id="dots"></div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================
+   INSTRUÇÕES:
+   Troque cada "url: '#'" abaixo pelo link real da página
+   correspondente no seu Google Sites antes de publicar.
+   ========================================================== */
+
+const dots = [
+  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1PBQ8hIkZLHsQyCxX2zt1M2K9svFvtvLo/edit' },
+  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1z0dnXEOuBcDA9Wuilbv3piFlr4nsR7Kh/edit' },
+  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional',   url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1wFUxDsdH-tfd0FJVtVhNqNKFL3qZ3qcE/edit' },
+];
+
+const decorative = [];
+
+const CANVAS_W = 820;
+const CANVAS_H = 260;
+const container = document.getElementById('dots');
+let delay = 0;
+
+function pct(val, total) {
+  return (val / total * 100) + '%';
+}
+
+decorative.forEach((d) => {
+  const el = document.createElement('div');
+  el.className = 'dot';
+  el.style.left = pct(d.x - d.r, CANVAS_W);
+  el.style.top = pct(d.y - d.r, CANVAS_H);
+  el.style.width = pct(d.r*2, CANVAS_W);
+  el.style.height = pct(d.r*2, CANVAS_H);
+  el.style.background = d.color;
+  el.style.animationDelay = delay + 's';
+  delay += 0.15;
+  container.appendChild(el);
+});
+
+dots.forEach((d) => {
+  const el = document.createElement('a');
+  el.href = d.url;
+  el.className = 'dot clickable';
+  el.setAttribute('aria-label', d.topic);
+  el.style.left = pct(d.x - d.r, CANVAS_W);
+  el.style.top = pct(d.y - d.r, CANVAS_H);
+  el.style.width = pct(d.r*2, CANVAS_W);
+  el.style.height = pct(d.r*2, CANVAS_H);
+  el.style.animationDelay = delay + 's';
+  delay += 0.15;
+  el.innerHTML = '<span class="check">✓</span>' + d.topic.replace(/\n/g, '<br>');
+  container.appendChild(el);
+});
+</script>
+
+</body>
+</html>
