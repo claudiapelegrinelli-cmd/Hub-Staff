@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Sobre Nós</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', sans-serif;
+  }
+  #wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    color: #808080;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 4px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #003F2E;
+    margin: 0 0 24px;
+  }
+  #dots {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    background: #01A972;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B6FE80;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    white-space: pre-line;
+    line-height: 1.2;
+    padding: 6px;
+    text-decoration: none;
+    animation: floaty 3s ease-in-out infinite;
+    transition: transform 0.15s;
+  }
+  .dot:hover {
+    transform: scale(1.08);
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    background: #80D4B9;
+    opacity: 0.5;
+    animation: floaty 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes floaty {
+    0%, 100% { margin-top: 0px; }
+    50% { margin-top: -8px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+  <p class="eyebrow">Sobre Nós</p>
+  <h1>Escolha um subtema</h1>
+  <div id="dots"></div>
+</div>
+
+<script>
+/* ==========================================================
+   INSTRUÇÕES:
+   Troque cada "url: '#'" abaixo pelo link real da subpágina
+   correspondente no seu Google Sites antes de publicar.
+   ========================================================== */
+
+const dots = [
+  { x: 78,  y: 118, r: 60, label: 'Somos\nDigital',            url: '#' },
+  { x: 232, y: 55,  r: 70, label: 'Identidade\nda Marca',      url: '#' },
+  { x: 388, y: 128, r: 56, label: 'Como nos\nComunicamos',     url: '#' },
+  { x: 270, y: 218, r: 66, label: 'Nosso\nProduto',            url: '#' },
+];
+
+const decorative = [
+  { x: 165, y: 25,  r: 16 },
+  { x: 330, y: 18,  r: 12 },
+  { x: 18,  y: 55,  r: 14 },
+  { x: 440, y: 50,  r: 12 },
+  { x: 40,  y: 195, r: 15 },
+  { x: 445, y: 195, r: 13 },
+  { x: 130, y: 260, r: 13 },
+  { x: 380, y: 260, r: 15 },
+  { x: 205, y: 145, r: 10 },
+];
+
+const container = document.getElementById('dots');
+
+decorative.forEach((d, i) => {
+  const el = document.createElement('div');
+  el.className = 'deco';
+  el.style.left = (d.x - d.r) + 'px';
+  el.style.top = (d.y - d.r) + 'px';
+  el.style.width = (d.r*2) + 'px';
+  el.style.height = (d.r*2) + 'px';
+  el.style.animationDelay = (i * 0.18) + 's';
+  container.appendChild(el);
+});
+
+dots.forEach((d, i) => {
+  const el = document.createElement('a');
+  el.href = d.url;
+  el.className = 'dot';
+  el.style.left = (d.x - d.r) + 'px';
+  el.style.top = (d.y - d.r) + 'px';
+  el.style.width = (d.r*2) + 'px';
+  el.style.height = (d.r*2) + 'px';
+  el.style.animationDelay = (i * 0.2) + 's';
+  el.textContent = d.label;
+  container.appendChild(el);
+});
+</script>
+
+</body>
+</html>
