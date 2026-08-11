@@ -38,6 +38,7 @@
     position: absolute;
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -53,6 +54,20 @@
     text-decoration: none;
     white-space: pre-line;
     box-sizing: border-box;
+    background: #003F2E !important;
+    color: #B6FE80 !important;
+  }
+  .dot.clickable:visited {
+    background: #B6FE80 !important;
+    color: #003F2E !important;
+  }
+  .dot.clickable .check {
+    display: none;
+    font-size: 1.4em;
+    margin-bottom: 4px;
+  }
+  .dot.clickable:visited .check {
+    display: block;
   }
   .dot.clickable:hover {
     transform: scale(1.08);
@@ -116,17 +131,17 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
+  el.target = '_blank';
+  el.rel = 'noopener';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
   el.style.left = pct(d.x - d.r, CANVAS_W);
   el.style.top = pct(d.y - d.r, CANVAS_H);
   el.style.width = pct(d.r*2, CANVAS_W);
   el.style.height = pct(d.r*2, CANVAS_H);
-  el.style.background = d.color;
-  el.style.color = '#B6FE80';
   el.style.animationDelay = delay + 's';
   delay += 0.15;
-  el.textContent = d.topic;
+  el.innerHTML = '<span class="check">✓</span>' + d.topic.replace(/\n/g, '<br>');
   container.appendChild(el);
 });
 </script>
