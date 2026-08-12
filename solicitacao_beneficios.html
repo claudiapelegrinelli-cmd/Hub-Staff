@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Solicitação de Benefícios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #003F2E;
+    margin: 0 0 6px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #0F6E56;
+    margin: 0 0 28px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #00593E;
+    margin: 18px 0 6px;
+  }
+  input[type="text"], select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    border: 1px solid rgba(0,89,62,0.3);
+    border-radius: 8px;
+    color: #003F2E;
+    background: #FFFFFF;
+  }
+  .benefit-card {
+    background: #ECFDF3;
+    border: 1px solid rgba(0,89,62,0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+  .benefit-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .benefit-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+  .benefit-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #003F2E;
+  }
+  .benefit-rule {
+    font-size: 12px;
+    color: #0F6E56;
+    margin: 4px 0 0 28px;
+  }
+  .warning {
+    display: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: #A32D2D;
+    background: #FCEBEB;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin: 8px 0 0 28px;
+  }
+  .sus-field {
+    display: none;
+    margin: 10px 0 0 28px;
+  }
+  #submitBtn {
+    width: 100%;
+    margin-top: 28px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    background: #01A972;
+    color: #EAF6F1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #submitBtn:disabled {
+    background: #B4B2A9;
+    cursor: not-allowed;
+  }
+  #formMsg {
+    display: none;
+    font-size: 13px;
+    color: #A32D2D;
+    margin-top: 10px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <h1>Solicitação de benefícios</h1>
+  <p class="subtitle">Preencha os dados abaixo. Ao enviar, seu e-mail vai abrir com a solicitação pronta para o time de Benefícios.</p>
+
+  <label for="nome">Nome completo</label>
+  <input type="text" id="nome" placeholder="Seu nome completo">
+
+  <label for="cpf">CPF</label>
+  <input type="text" id="cpf" placeholder="000.000.000-00">
+
+  <label for="cargo">Tipo de contrato</label>
+  <select id="cargo">
+    <option value="">Selecione</option>
+    <option value="CLT">CLT</option>
+    <option value="Estagiário">Estagiário</option>
+  </select>
+
+  <label for="cidade">Cidade de residência</label>
+  <select id="cidade">
+    <option value="">Selecione</option>
+    <option value="Poços">Poços de Caldas</option>
+    <option value="Outras">Outras localidades</option>
+  </select>
+
+  <label>Benefícios solicitados</label>
+
+  <div class="benefit-card" id="card-unimed">
+    <div class="benefit-header">
+      <input type="checkbox" id="chk-unimed" onchange="handleChange()">
+      <span class="benefit-name">Plano de Saúde - Unimed</span>
+    </div>
+    <p class="benefit-rule">Elegível: CLT · Poços de Caldas e outras localidades</p>
+    <p class="warning" id="warn-unimed">Este benefício está disponível apenas para colaboradores CLT.</p>
+    <div class="sus-field" id="sus-field">
+      <label for="sus" style="margin-top:0;">Número da Carteirinha do SUS (obrigatório para Unimed)</label>
+      <input type="text" id="sus" placeholder="000 0000 0000 0000">
+      <label for="susFile">Foto ou PDF da carteirinha do SUS</label>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <input type="file" id="susFile" accept="image/*,.pdf" style="padding:6px 0;" onchange="toggleClearBtn()">
+        <button type="button" id="clearSusFile" onclick="clearSusFile()" style="display:none; background:none; border:none; color:#A32D2D; font-size:12px; font-weight:700; cursor:pointer; font-family:'Nunito',sans-serif; padding:0;">Remover</button>
+      </div>
+      <p style="font-size:11px; color:#0F6E56; margin:6px 0 0;">Depois de enviar, anexe esse mesmo arquivo no e-mail que vai abrir — o navegador não permite anexar automaticamente.</p>
+    </div>
+  </div>
+
+  <div class="benefit-card" id="card-uniodonto">
+    <div class="benefit-header">
+      <input type="checkbox" id="chk-uniodonto" onchange="handleChange()">
+      <span class="benefit-name">Plano Odontológico - Uniodonto</span>
+    </div>
+    <p class="benefit-rule">Elegível: CLT · apenas Poços de Caldas</p>
+    <p class="warning" id="warn-uniodonto"></p>
+  </div>
+
+  <div class="benefit-card" id="card-wellhub">
+    <div class="benefit-header">
+      <input type="checkbox" id="chk-wellhub" onchange="handleChange()">
+      <span class="benefit-name">Wellhub</span>
+    </div>
+    <p class="benefit-rule">Elegível: CLT / Estagiário · Poços de Caldas e outras localidades</p>
+    <p class="warning" id="warn-wellhub">Este benefício não possui restrição para o seu perfil.</p>
+  </div>
+
+  <button id="submitBtn" onclick="submitForm()">Enviar solicitação</button>
+  <p id="formMsg"></p>
+</div>
+
+<script>
+function toggleClearBtn() {
+  var file = document.getElementById('susFile').files[0];
+  document.getElementById('clearSusFile').style.display = file ? 'inline-block' : 'none';
+}
+
+function clearSusFile() {
+  var input = document.getElementById('susFile');
+  input.value = '';
+  document.getElementById('clearSusFile').style.display = 'none';
+}
+
+function handleChange() {
+  var cargo = document.getElementById('cargo').value;
+  var cidade = document.getElementById('cidade').value;
+
+  var susField = document.getElementById('sus-field');
+  susField.style.display = document.getElementById('chk-unimed').checked ? 'block' : 'none';
+
+  var warnUnimed = document.getElementById('warn-unimed');
+  warnUnimed.style.display = (document.getElementById('chk-unimed').checked && cargo && cargo !== 'CLT') ? 'block' : 'none';
+
+  var warnUniodonto = document.getElementById('warn-uniodonto');
+  if (document.getElementById('chk-uniodonto').checked && cargo && cargo !== 'CLT') {
+    warnUniodonto.textContent = 'Este benefício está disponível apenas para colaboradores CLT.';
+    warnUniodonto.style.display = 'block';
+  } else if (document.getElementById('chk-uniodonto').checked && cidade === 'Outras') {
+    warnUniodonto.textContent = 'Este benefício está disponível apenas para residentes em Poços de Caldas.';
+    warnUniodonto.style.display = 'block';
+  } else {
+    warnUniodonto.style.display = 'none';
+  }
+}
+
+document.getElementById('cargo').addEventListener('change', handleChange);
+document.getElementById('cidade').addEventListener('change', handleChange);
+
+function submitForm() {
+  var msg = document.getElementById('formMsg');
+  msg.style.display = 'none';
+
+  var nome = document.getElementById('nome').value.trim();
+  var cpf = document.getElementById('cpf').value.trim();
+  var cargo = document.getElementById('cargo').value;
+  var cidade = document.getElementById('cidade').value;
+
+  if (!nome || !cpf || !cargo || !cidade) {
+    msg.textContent = 'Preencha todos os campos antes de enviar.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var unimed = document.getElementById('chk-unimed').checked;
+  var uniodonto = document.getElementById('chk-uniodonto').checked;
+  var wellhub = document.getElementById('chk-wellhub').checked;
+
+  if (!unimed && !uniodonto && !wellhub) {
+    msg.textContent = 'Selecione pelo menos um benefício.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (unimed && cargo !== 'CLT') {
+    msg.textContent = 'Unimed está disponível apenas para CLT. Desmarque esse benefício ou revise o tipo de contrato.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (uniodonto && cargo !== 'CLT') {
+    msg.textContent = 'Uniodonto está disponível apenas para CLT. Desmarque esse benefício ou revise o tipo de contrato.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (uniodonto && cidade === 'Outras') {
+    msg.textContent = 'Uniodonto está disponível apenas para residentes em Poços de Caldas.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var sus = document.getElementById('sus').value.trim();
+  var susFile = document.getElementById('susFile').files[0];
+  if (unimed && !sus) {
+    msg.textContent = 'Informe o número da Carteirinha do SUS para solicitar a Unimed.';
+    msg.style.display = 'block';
+    return;
+  }
+  if (unimed && !susFile) {
+    msg.textContent = 'Selecione a foto ou PDF da Carteirinha do SUS antes de enviar.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var lista = [];
+  if (unimed) lista.push('Plano de Saúde - Unimed (Carteirinha SUS: ' + sus + ')');
+  if (uniodonto) lista.push('Plano Odontológico - Uniodonto');
+  if (wellhub) lista.push('Wellhub');
+
+  var corpo = 'Nome completo: ' + nome + '\n' +
+              'CPF: ' + cpf + '\n' +
+              'Tipo de contrato: ' + cargo + '\n' +
+              'Cidade de residência: ' + (cidade === 'Poços' ? 'Poços de Caldas' : 'Outras localidades') + '\n\n' +
+              'Benefícios solicitados:\n- ' + lista.join('\n- ') +
+              (unimed ? '\n\n⚠️ Lembre-se de anexar a foto/PDF da Carteirinha do SUS (' + (susFile ? susFile.name : 'arquivo selecionado') + ') a este e-mail antes de enviar.' : '');
+
+  var mailto = 'mailto:beneficios@weclever.co' +
+               '?subject=' + encodeURIComponent('Solicitação de Benefício - ' + nome) +
+               '&body=' + encodeURIComponent(corpo);
+
+  window.location.href = mailto;
+}
+</script>
+
+</body>
+</html>
