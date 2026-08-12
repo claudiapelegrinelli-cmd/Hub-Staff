@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Modelo de Documentos (Protótipo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  #content {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h2 {
+    color: #003F2E;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 14px;
+  }
+  h2:first-child {
+    margin-top: 0;
+  }
+  p {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 16px;
+  }
+  .highlight {
+    background: #ECFDF3;
+    border-left: 3px solid #01A972;
+    border-radius: 0;
+    padding: 12px 16px;
+    margin: 0 0 16px;
+    color: #003F2E;
+    font-weight: 700;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,89,62,0.15);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 12px;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #003F2E;
+    cursor: pointer;
+    text-align: left;
+  }
+  .toggle-icon {
+    font-size: 20px;
+    font-weight: 700;
+    color: #01A972;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+  .toggle-btn.open .toggle-icon {
+    transform: rotate(45deg);
+  }
+  .toggle-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .toggle-panel.open {
+    max-height: 600px;
+  }
+  .toggle-panel-inner {
+    padding: 0 4px 20px 4px;
+  }
+  .toggle-panel-inner p {
+    font-size: 14px;
+  }
+  .toggle-panel-inner .highlight {
+    font-weight: 400;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:200px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+
+  <div id="content">
+
+    <h2>Políticas e Compliance</h2>
+
+    <p>Aqui você vai encontrar as políticas e diretrizes da WeClever e Revla, conhecer esse conteúdo é parte de como trabalhamos e conduzimos o negócio.</p>
+
+    <button class="toggle-btn" onclick="toggleItem('etica')" id="btn-etica">
+      <span class="toggle-icon" id="icon-etica">+</span>
+      <span>Código de Ética e Conduta</span>
+    </button>
+    <div class="toggle-panel" id="panel-etica">
+      <div class="toggle-panel-inner">
+        <div class="highlight">Nossos valores, o que se espera da conduta de cada colaborador e consultor, regras de confidencialidade (NDA) e o compromisso da WeClever com inclusão, saúde e segurança.</div>
+        <p><a href="codigo_etica_conduta.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleItem('aviso')" id="btn-aviso">
+      <span class="toggle-icon" id="icon-aviso">+</span>
+      <span>Aviso Interno de Privacidade</span>
+    </button>
+    <div class="toggle-panel" id="panel-aviso">
+      <div class="toggle-panel-inner">
+        <div class="highlight">O que a WeClever coleta sobre você (candidato, colaborador ou prestador de serviço), pra que usa, com quem compartilha, e quais direitos você tem sobre esses dados.</div>
+        <p><a href="aviso_interno_privacidade.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleItem('privacidade')" id="btn-privacidade">
+      <span class="toggle-icon" id="icon-privacidade">+</span>
+      <span>Política de Privacidade e Proteção de Dados Pessoais</span>
+    </button>
+    <div class="toggle-panel" id="panel-privacidade">
+      <div class="toggle-panel-inner">
+        <div class="highlight">Como a WeClever trata dados pessoais — tanto os seus (como colaborador) quanto os dos leads recebidos de clientes — em conformidade com a LGPD.</div>
+        <p><a href="politica_privacidade_dados_pessoais.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleItem('classificacao')" id="btn-classificacao">
+      <span class="toggle-icon" id="icon-classificacao">+</span>
+      <span>Política de Classificação da Informação</span>
+    </button>
+    <div class="toggle-panel" id="panel-classificacao">
+      <div class="toggle-panel-inner">
+        <div class="highlight">Como identificar se uma informação é Pública, Interna, Confidencial ou Restrita — e o que fazer (ou não) com cada nível, em documentos, e-mails e arquivos.</div>
+        <p><a href="politica_classificacao_informacao.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleItem('psi')" id="btn-psi">
+      <span class="toggle-icon" id="icon-psi">+</span>
+      <span>Política de Segurança da Informação</span>
+    </button>
+    <div class="toggle-panel" id="panel-psi">
+      <div class="toggle-panel-inner">
+        <div class="highlight">Diretrizes sobre uso de e-mail, internet, computadores, dispositivos móveis e VPN — o que protege os dados da empresa e de cada colaborador no dia a dia.</div>
+        <p><a href="politica_seguranca_informacao.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleItem('pcn')" id="btn-pcn">
+      <span class="toggle-icon" id="icon-pcn">+</span>
+      <span>Plano de Continuidade de Negócios</span>
+    </button>
+    <div class="toggle-panel" id="panel-pcn">
+      <div class="toggle-panel-inner">
+        <div class="highlight">Documento que orienta o que fazer diante de imprevistos sérios — queda de sistema, desastre natural, ataque cibernético e outros cenários que possam afetar a operação da WeClever.</div>
+        <p><a href="plano_continuidade_negocios.html" style="color:#01A972; font-weight:700;">Veja documento na íntegra →</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleItem(id) {
+  var btn = document.getElementById('btn-' + id);
+  var panel = document.getElementById('panel-' + id);
+  var icon = document.getElementById('icon-' + id);
+  var isOpen = panel.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+}
+</script>
+
+</body>
+</html>

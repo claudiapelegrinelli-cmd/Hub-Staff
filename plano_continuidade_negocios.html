@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Plano de Continuidade de Negócios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  #content {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #003F2E;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 6px;
+  }
+  .subtitle {
+    color: #0F6E56;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 32px;
+  }
+
+  h2 {
+    color: #003F2E;
+    font-size: 19px;
+    font-weight: 800;
+    margin: 36px 0 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,89,62,0.12);
+  }
+  h2:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  h3 {
+    color: #00593E;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+  }
+  h4 {
+    color: #01A972;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 18px 0 8px;
+  }
+
+  p {
+    color: #00593E;
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+  }
+  li {
+    color: #00593E;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  strong { color: #003F2E; }
+
+  .highlight {
+    background: #ECFDF3;
+    border-left: 3px solid #01A972;
+    padding: 12px 16px;
+    margin: 0 0 16px;
+    color: #003F2E;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 20px;
+    font-size: 13px;
+  }
+  th {
+    background: #01A972;
+    color: #EAF6F1;
+    text-align: left;
+    padding: 8px 10px;
+  }
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,89,62,0.15);
+    color: #003F2E;
+    vertical-align: top;
+  }
+
+  .doc-meta {
+    background: #ECFDF3;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: #0F6E56;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:200px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+  <div class="deco" style="width:35px; height:35px; background:#66D681; opacity:0.4; bottom:60px; right:100px; animation-duration:4s; animation-delay:1.4s;"></div>
+
+  <div id="content">
+
+    <h1>Plano de Continuidade de Negócios (PCN)</h1>
+    <p class="subtitle">Versão 2.0 · Classificação: Uso Interno</p>
+
+    <h2>Introdução</h2>
+    <p>O Plano de Continuidade de Negócios (PCN) é o desenvolvimento preventivo de um conjunto de estratégias e planos de ação estruturados de maneira a garantir que os serviços essenciais da WeClever sejam devidamente identificados e preservados após a ocorrência de um desastre, e até o retorno à situação normal de funcionamento da empresa no contexto do negócio do qual faz parte.</p>
+
+    <h2>Objetivo</h2>
+    <p>O PCN tem como objetivo:</p>
+    <ul>
+      <li>Oferecer um plano abrangente de continuidade de negócios dos processos críticos;</li>
+      <li>Definir as ações básicas para que os processos críticos operem em níveis aceitáveis de modo a permitir a continuidade do negócio e da operação, visando diminuir impactos e mitigar perdas.</li>
+    </ul>
+
+    <h2>Escopo</h2>
+    <p>Este documento destina-se a todos os envolvidos nas operações e processos de negócios da WeClever, incluindo e não se limitando aos colaboradores e terceiros.</p>
+
+    <h2>Termos e Definições</h2>
+    <ul>
+      <li><strong>Análises de Impacto do Negócio (BIA):</strong> objetivo de identificar a criticidade dos processos de negócio, atribuindo a ordem de prioridade de recuperação, bem como o impacto causado por situações de indisponibilidade nos mesmos.</li>
+      <li><strong>Colaboradores:</strong> funcionários da WeClever, estagiários, sócios, diretores, ou seja, todos os profissionais da WeClever.</li>
+      <li><strong>Contingência:</strong> é o momento em que há a mobilização de recursos para responder ao evento e garantir a continuidade das atividades críticas e/ou essenciais através dos recursos de backup.</li>
+      <li><strong>Crise:</strong> é o momento em que ocorre qualquer incidente que comprometa a imagem/reputação da empresa.</li>
+      <li><strong>Emergência:</strong> situação em um processo, sistema ou atividade que, além dos controles estabelecidos, pode resultar em paralisação e que requer, para controlar seus efeitos, a aplicação de recursos humanos, materiais e procedimentos específicos treinados e organizados.</li>
+      <li><strong>Comitê de Continuidade de Negócios (CGC):</strong> é uma equipe multidisciplinar de pessoas cujo objetivo é o melhor tratamento dos eventos que geram ou podem gerar descontinuidade dos processos críticos e vitais da empresa.</li>
+      <li><strong>Desastre:</strong> será considerado desastre o evento de crise que superar o tempo limite de restauração dos processos de negócio, ou seja, o tempo de indisponibilidade ultrapasse os tempos máximos de indisponibilidade aceitável (MTPDs) dos processos críticos e vitais.</li>
+      <li><strong>Incidente:</strong> evento imprevisto e indesejado que pode resultar em danos a pessoas, bens (próprios ou de terceiros), impacto no meio ambiente e nos sistemas da empresa.</li>
+      <li><strong>MTPD (Maximum Tolerable Period of Disruption):</strong> tempo máximo de indisponibilidade aceitável atingido antes de causar o impacto da interrupção. O tempo identificado deve ser expresso de acordo com a real necessidade de recuperação do processo, podendo identificá-lo em minutos, horas, dias, semanas ou a unidade que melhor se adapte à necessidade específica.</li>
+      <li><strong>Plano de Resposta a Incidentes (PRI):</strong> tem como foco definir de forma estruturada como uma organização deve agir para identificar, conter e recuperar-se de eventos inesperados que possam impactar suas operações.</li>
+      <li><strong>Processo:</strong> conjunto de atividades inter-relacionadas ou interativas que transformam entradas em saídas.</li>
+      <li><strong>Profissionais-chave:</strong> são profissionais nomeados pela Diretoria e/ou gestão que fazem parte do PCN, como representantes das áreas críticas da WeClever, responsáveis por iniciar as atividades em período de contingência, conforme o percentual mínimo esperado.</li>
+      <li><strong>Recursos:</strong> todos os ativos, pessoas, habilidades, informações, tecnologia, locais, suprimentos, informações que a Empresa deve ter disponível para uso a fim de operar e atingir seus objetivos.</li>
+      <li><strong>Riscos:</strong> são a possibilidade de ocorrência de um evento, oriunda de fontes internas ou externas, capaz de afetar adversamente o atendimento dos objetivos da Companhia.</li>
+      <li><strong>RPO (Recovery Point Objective):</strong> objetivos de ponto de recuperação (RPO) com as perdas aceitáveis de informações dos processos, ou ponto de retomada da atividade — antes de uma pausa.</li>
+      <li><strong>RTO (Recovery Time Objective):</strong> objetivos de tempo de recuperação (RTO), com prazos máximos de retorno à atividade.</li>
+      <li><strong>Stakeholders:</strong> grupo de interesse impactado pelas ações da empresa, direta e indiretamente, abrangendo o público interno e externo (terceiros), impacto no meio ambiente e nos sistemas da empresa.</li>
+      <li><strong>Terceiros:</strong> parceiros, prestadores de serviços, clientes, ou seja, todas as pessoas que tenham algum tipo de relacionamento com a WeClever.</li>
+    </ul>
+
+    <h2>Sistema de Gestão de Continuidade de Negócios</h2>
+    <p>O Sistema de Gestão da Continuidade de Negócios (SGCN) é composto por três etapas de atuação, bem como suas avaliações:</p>
+
+    <h3>Planejamento e Preparação</h3>
+
+    <h4>Mapeamento</h4>
+    <p>O Sistema de Gestão de Continuidade de Negócios (SGCN) é baseado na ISO/IEC 22301, que estabelece diretrizes para a estruturação da continuidade nas organizações. Seu propósito é compreender as necessidades do negócio, o apetite de risco e os impactos decorrentes de eventos graves, estruturando mecanismos adequados para a gestão da WeClever.</p>
+    <p>Nesse contexto, o SGCN visa estabelecer, implementar, operar, monitorar, analisar criticamente e promover a melhoria contínua dos processos de continuidade de negócios.</p>
+    <p>Para garantir sua aderência à realidade da organização, são consideradas ferramentas fundamentais:</p>
+    <ul>
+      <li>Análise de Riscos de Continuidade;</li>
+      <li>Análise de Impacto no Negócio (BIA – Business Impact Analysis);</li>
+      <li>Avaliação de maturidade em GCN (CMM);</li>
+      <li>Estratégias de Continuidade.</li>
+    </ul>
+
+    <h4>Planejamento</h4>
+    <p>A ISO/IEC 22301:2013 define a gestão da continuidade de negócios como: "Capacidade da organização de continuar a entrega de produtos ou serviços em um nível aceitável, previamente definido, após incidentes de interrupção". Para a adequada preparação de possíveis materializações de risco, é necessário se planejar para evitar a descontinuidade de processos e/ou recursos críticos.</p>
+    <p>O planejamento é a melhor forma de se preparar.</p>
+    <p>Planos importantes para preparação:</p>
+    <ul>
+      <li>Plano de Resposta a Incidentes;</li>
+      <li>Plano de Comunicação de Incidentes.</li>
+    </ul>
+
+    <h4>Envolvimento</h4>
+    <p>Todos os envolvidos devem conhecer este Plano de Continuidade de Negócio e seus anexos.</p>
+    <p>Pelo menos 1 (uma) vez ao ano, os colaboradores envolvidos no plano devem receber treinamento e capacitações necessárias.</p>
+    <p>Testes e simulações têm papel fundamental na avaliação e efetividade das estratégias definidas nos planos de continuidade. O compromisso deve ser com colaboradores internos e terceiros que atuam em atividades críticas.</p>
+    <p>Deve ser realizado um plano anual de testes considerando todos os elementos definidos neste plano, com a participação dos coordenadores e gestores das áreas.</p>
+    <p>É responsabilidade do líder do comitê e da alta administração garantir que os testes sejam realizados e que o público-alvo seja treinado. O líder do comitê será responsável por manter as evidências da execução do teste.</p>
+    <p>O plano de testes e simulações deve ter a seguinte abrangência:</p>
+    <ul>
+      <li>Quesitos técnicos, logísticos, administrativos, de procedimento e outros sistemas em operação do PCN;</li>
+      <li>Preparativos e infraestrutura, incluindo papéis, responsabilidades e quaisquer locais de gerenciamento de incidentes e áreas de trabalho, entre outros;</li>
+      <li>Validação da recuperação da tecnologia e das telecomunicações e outros recursos necessários para os processos críticos, incluindo a disponibilidade e remanejamento de pessoal se necessário.</li>
+    </ul>
+    <p>É recomendável haver especial atenção dos responsáveis para as seguintes abordagens:</p>
+    <ul>
+      <li>Definir a escala e complexidade dos testes de forma apropriada aos objetivos de recuperação;</li>
+      <li>Planejar de acordo com as partes interessadas, incluindo fornecedores, parceiros terceirizados e outros relevantes à continuidade do negócio;</li>
+      <li>Buscar não impactar processos vitais e críticos, resultado direto de acidente do teste — exemplo: não coincidir com datas de fechamento contábil, de auditorias ou de outro período crítico para o negócio;</li>
+      <li>Elaboração do relatório e de análises após o teste com evidências quanto ao alcance dos objetivos e recomendações de melhorias;</li>
+      <li>Refazer testes que demonstrarem deficiências sérias ou imprecisões nos planos, após as ações corretivas terem sido completadas;</li>
+      <li>Realizar testes de validação de ambiente para validar o ambiente alternativo previsto no plano de contingência, para assegurar que todos os recursos listados na BIA estejam disponíveis caso ocorra uma indisponibilidade. Estes testes devem ter periodicidade anual ou extraordinariamente, sempre que houver alguma mudança significativa da área (pessoas, processos e recursos);</li>
+      <li>Realizar teste de acionamento (Call Tree) para exercitar a cadeia de acionamento do PCN das áreas classificadas como críticas pela Análise de Impacto nos Negócios (BIA), simulando uma crise, para atingir um tempo de resposta eficaz. Este teste é bom ser realizado duas vezes por ano.</li>
+    </ul>
+
+    <h4>Melhoria Contínua</h4>
+    <p>Processo contínuo em que a WeClever, em condições normais de operação, revisa periodicamente o Plano de Continuidade de Negócios. Realiza reuniões e reportes tempestivos com participação do Comitê de Continuidade de Negócios, considerando informações relacionadas a potenciais cenários de crise.</p>
+    <p>O Comitê de Continuidade de Negócios deve, no início, realizar reuniões anuais focando no amadurecimento da estrutura de gestão da continuidade e na atualização do Plano de Continuidade de Negócios, de modo a maximizar a resiliência da WeClever perante potenciais cenários de crise. Nessa reunião, o Comitê deve deliberar sobre:</p>
+    <ul>
+      <li>Identificar potenciais crises nas definições do planejamento estratégico, fornecedores, clientes ou outros fatores relevantes para a continuidade do negócio;</li>
+      <li>Avaliar a necessidade de auditoria sobre determinados acontecimentos ou reportes;</li>
+      <li>Aprimorar políticas de qualidade e procedimentos de segurança;</li>
+      <li>Deliberar sobre riscos com maior impacto/vulnerabilidade;</li>
+      <li>Revisar papéis e responsabilidades do Comitê.</li>
+    </ul>
+    <p>Este PCN, bem como seus instrumentos, será revisado anualmente ou de acordo com as seguintes situações, o que ocorrer primeiro:</p>
+    <ul>
+      <li>Imediatamente por motivos regulatórios;</li>
+      <li>Perigos e impactos potenciais;</li>
+      <li>Disponibilidade ou capacidade de recursos;</li>
+      <li>Mudanças na infraestrutura física e lógica;</li>
+      <li>Substituição de fornecedores críticos;</li>
+      <li>Histórico de ocorrências em empresas congêneres do setor;</li>
+      <li>Mudanças de processo.</li>
+    </ul>
+    <p>É responsabilidade do Comitê de Continuidade de Negócios a atualização deste documento junto às áreas envolvidas.</p>
+    <p>O comitê deve definir indicadores e parâmetros de monitoramento das atividades desenvolvidas para a manutenção e adequação deste plano, e deve apresentar periodicamente informações sobre os indicadores e atividades realizadas, considerando:</p>
+    <ul>
+      <li>Atualizar os indicadores dos elementos definidos neste plano;</li>
+      <li>Colaboradores e/ou terceiros treinados nos planos estabelecidos;</li>
+      <li>Ações de conscientização durante a vigência deste plano;</li>
+      <li>Realização de testes e simulações e respectivos testes de execução.</li>
+    </ul>
+    <p>O sistema de gestão de continuidade de negócios está baseado no PDCA, conforme a relação das seções da norma ABNT NBR ISO 22313:2015 e os componentes do PDCA.</p>
+
+    <h3>Resposta</h3>
+
+    <h4>Reportar</h4>
+    <p>Quando qualquer colaborador identificar um evento incomum com impacto ou potencial para gerar impacto significativo, deve notificar imediatamente seu superior hierárquico, o gestor da área ou o responsável pela área. Caso se trate de um evento relacionado a sistemas ou infraestrutura de TI, deve ser aberto um ticket para que a equipe de suporte de TI tenha conhecimento e possa dar início ao atendimento do evento.</p>
+    <p>O líder da área ou responsável deve fazer a primeira avaliação do evento conforme os impactos identificados e tomar as primeiras decisões. Caso determinado que se trata de um evento de interrupção, ou com potencial para gerar uma interrupção, ou algo que possa gerar impacto de imagem ou financeiro que precisa ser tratado imediatamente, o líder do comitê deverá ser notificado no e-mail: <strong>ana.abreu@weclever.com</strong>.</p>
+    <p>Caso não gere ou não tenha potencial para gerar interrupção de processos críticos e/ou vitais, ou gere impactos significativos ao negócio, o gestor ou responsável deve monitorar o evento, independentemente de aumentar ou não o impacto potencial, até que seja solucionado. Se for resolvido, deve registrar o evento e as ações tomadas, e informar o líder de continuidade por e-mail.</p>
+    <p>A primeira comunicação com o líder do comitê deve ser realizada pelos meios mais ágeis disponíveis, preferencialmente verbal (telefone); caso não seja possível, por mensagem instantânea, seguida de chamada telefônica, para garantir a eficácia da comunicação. No entanto, após a primeira comunicação, deverá preencher o Relatório de Incidente (Anexo II).</p>
+
+    <h4>Classificar</h4>
+    <p>O líder do comitê deve avaliar o cenário e os impactos iniciais e identificar os processos afetados e a necessidade de acionamento do PCN. Identificando que o evento causa ou pode causar a interrupção de processos críticos ou vitais, a interrupção e os impactos devem ser comunicados ao comitê.</p>
+    <p>Se não afetar ou interromper os processos críticos, não é necessário notificar o comitê. O gestor ou responsável deve dar continuidade ao processo com a equipe responsável pelo tratamento, acompanhando o tratamento e a solução.</p>
+
+    <h4>Convocar</h4>
+    <p>Se houver impacto em processos críticos e/ou vitais, ou se houver possibilidade de impacto ou indisponibilidade, o Comitê de Continuidade de Negócios deve ser notificado — os contatos do comitê estão disponíveis mais abaixo, na seção "Membros Fixos".</p>
+    <p>Caso já tenha estratégias para o cenário do evento, o líder do comitê poderá acionar os líderes dos planos de continuidade operacional para ativar as ações planejadas.</p>
+    <p>Os membros efetivos devem avaliar a necessidade de acionar os membros eletivos de acordo com o cenário, equipes de apoio internas ou externas.</p>
+
+    <h4>Resolver</h4>
+    <p>O comitê definirá e coordenará a execução das atividades de resposta ao evento. O Comitê deve avaliar se é necessário gerar uma comunicação externa e/ou interna.</p>
+    <p>Manter uma agenda de reunião consistente é uma ferramenta crítica para economizar tempo e trazer clareza para a equipe de resolução de eventos. As reuniões devem ser realizadas pelo menos diariamente enquanto durar o evento ou seus impactos.</p>
+    <p>Relatórios frequentes e oportunos são vitais para garantir o fluxo eficaz de informações. Todos os níveis de gestão devem trocar informações e relatórios de forma frequente e regular. A informação deve fluir para cima e para baixo.</p>
+    <p>De acordo com a evolução das ações definidas pelo comitê e o acompanhamento dos indicadores definidos para monitorar a extensão e impacto da interrupção, o comitê deve avaliar o cenário para que possa fornecer segurança suficiente para reduzir os impactos e garantir a capacidade operacional mínima dos serviços e/ou produtos afetados pelo evento de interrupção.</p>
+    <p>O comitê deve considerar a convocação de especialistas internos/externos quando necessário. Especialistas internos podem ser identificados e ativados por membros do comitê.</p>
+    <p>Após identificar uma situação de interrupção fora dos cenários mapeados, o principal objetivo do comitê é definir e coordenar a execução das atividades de resposta ao evento estabelecido. As principais atribuições do comitê nesta situação são:</p>
+    <ul>
+      <li>Compreender detalhadamente a situação do evento e seus impactos;</li>
+      <li>Liderar e priorizar esforços para proteger o patrimônio e a reputação da empresa;</li>
+      <li>Desenvolver a estratégia de comunicação e permitir a comunicação eficiente e eficaz, tanto interna como externa;</li>
+      <li>Promover o alinhamento estratégico, apoiando as decisões tomadas em todos os níveis;</li>
+      <li>Desenvolver respostas a curto, médio e longo prazo;</li>
+      <li>Monitorar o evento e todas as atividades de resposta em andamento;</li>
+      <li>Definir a equipe que será responsável pelas ações de resposta à crise.</li>
+    </ul>
+    <p>Na etapa de resolução, as seguintes atividades devem ser realizadas:</p>
+    <ul>
+      <li>O comitê deve avaliar as ações predefinidas e outras identificadas e definir prioridades com os demais membros, e estabelecer um plano de ação consolidado com as ações de continuidade, responsabilidades e prazos para sua execução.</li>
+      <li>O comitê deve definir os meios oficiais de comunicação e canais de contato ao longo do evento (por exemplo, grupos de e-mail, Zoom, Google Meet ou outros grupos de comunicação).</li>
+      <li>O líder do comitê deve estabelecer o acompanhamento e periodicidade dos relatórios e reuniões de controle do plano de continuidade com os membros do comitê. É necessário também avaliar periodicamente os impactos atuais e potenciais, identificando a evolução da interrupção e revisando os cenários.</li>
+      <li>Os responsáveis pelos processos vitais devem realizar as ações de continuidade predefinidas de acordo com os planos sob sua responsabilidade e/ou definir as ações de continuidade que serão realizadas por suas equipes de acordo com as diretrizes do Plano de Continuidade de Negócios ou do Comitê de Continuidade de Negócios.</li>
+      <li>O líder do comitê deve registrar todas as ações e decisões em atas durante o evento.</li>
+    </ul>
+
+    <h3>Retomada</h3>
+
+    <h4>Registrar</h4>
+    <p>Antes de tomar a decisão de voltar à normalidade e retomar as operações, é fundamental garantir que o evento está sob controle. Apenas o Comitê de Continuidade de Negócios pode declarar o contorno do evento, desde que observados rigorosamente os seguintes critérios:</p>
+    <ul>
+      <li>É assegurado um nível satisfatório de controle dos riscos que geraram o evento e que constituíram ameaças à vida e/ou ao patrimônio;</li>
+      <li>Não serão considerados procedimentos alternativos que apresentem risco inaceitável para assegurar a retomada das operações;</li>
+      <li>Os stakeholders dispõem de todas as informações relevantes sobre o evento;</li>
+      <li>Qualquer perícia técnica ou investigação foi realizada antes da avaliação do retorno das operações.</li>
+    </ul>
+
+    <h4>Desativar</h4>
+    <p>Na fase de desativação, o líder do comitê deve realizar as seguintes atividades:</p>
+    <ul>
+      <li>Avaliar a situação e o cumprimento das ações definidas no plano de ação consolidado;</li>
+      <li>Avaliar o cenário de interrupção e as ações realizadas, e identificar o fim da interrupção e/ou definir um novo formato de operação em casos de interrupções prolongadas;</li>
+      <li>Decretar o fim do período de continuidade e desativar oficialmente o PCN, planos e o Comitê de Continuidade de Negócios;</li>
+      <li>Avaliar, em conjunto com os restantes membros do comitê, as pendências a realizar que ficaram paralisadas durante a interrupção, e elaborar um plano de adaptação com responsabilidades e prazos;</li>
+      <li>Avaliar as lições aprendidas, considerando o cenário de interrupção, as ações realizadas, os pontos de sucesso e melhorias para o PCN, em até 30 dias após a desativação do comitê de continuidade.</li>
+    </ul>
+
+    <h4>Revisar Evento</h4>
+    <p>O evento de interrupção deve ser revisto de forma a maximizar a resiliência do negócio e reduzir a exposição a novos riscos, tornando-o mais preparado e protegido contra cenários de descontinuidade. Além disso, a revisão deve incluir as seguintes atividades:</p>
+    <ul>
+      <li>Reconstruir os eventos e a linha do tempo do evento de interrupção;</li>
+      <li>Identificar a causa raiz que iniciou o incidente e examinar qualquer problema funcional, processual ou sistêmico que possa ter contribuído para o evento;</li>
+      <li>Preparar relatórios para as partes interessadas (por exemplo, executivos, sócios, entre outros), se necessário;</li>
+      <li>Recomendar melhorias de processo ou ações que possam prevenir/mitigar futuras ocorrências do evento;</li>
+      <li>Revisar resposta de emergência e resposta a incidentes para incorporar em "lições aprendidas";</li>
+      <li>Atualizar planos com melhorias de lições aprendidas;</li>
+      <li>Documentar o tratamento de resposta a incidentes na base de conhecimento da empresa para uso futuro, se necessário.</li>
+    </ul>
+    <p>Comunicar todos os colaboradores, fornecedores e/ou clientes afetados direta ou indiretamente. Também poderão ser utilizados os canais oficiais de comunicação da WeClever, por exemplo (rede social, correio eletrônico, website), para divulgação de informações sobre o evento e sua finalização.</p>
+
+    <h2>Ferramentas da Continuidade</h2>
+
+    <h3>Plano de Continuidade de Negócios</h3>
+    <p>O Plano de Continuidade de Negócios (PCN) deve assegurar a continuidade dos processos estabelecidos na WeClever em caso de paralisação, decorrente de sinistro, de um ou mais processos considerados críticos, com acionamento dos profissionais-chave.</p>
+    <p>Os processos considerados críticos da WeClever são mapeados e direcionados pela sua natureza e riscos do evento, no momento do levantamento.</p>
+
+    <h4>Cenários que devem ser previstos nos planos</h4>
+    <ul>
+      <li><strong>Indisponibilidade Humana:</strong> greves, manifestações, fraudes, falha em prestador de serviços por parte de terceiro, acesso indevido às instalações e erro humano não intencional.</li>
+      <li><strong>Indisponibilidade Tecnológica:</strong> falha de sistemas, em dispositivos físicos (hardware), na rede interna (LAN), em rede externa (WAN), ataques cibernéticos e falha de fornecedores críticos (Internet, nuvem, voz, etc.).</li>
+      <li><strong>Indisponibilidade de Recursos:</strong> alagamentos, raios, vendavais, terremotos e incêndios.</li>
+      <li><strong>Indisponibilidade Biológica:</strong> infestação, contaminação, vazamento de químicos nocivos, epidemias/pandemias e quaisquer riscos relacionados a vírus, bactérias, parasitas, protozoários, fungos e bacilos.</li>
+      <li><strong>Indisponibilidade Física:</strong> problema de engenharia em instalações físicas, manutenção e rompimento de tubulação interna (água e esgoto), falha no sistema de refrigeração, instalações elétricas, no-break, gerador de energia, e interrupção de energia elétrica.</li>
+    </ul>
+
+    <h3>Plano de Resposta a Incidente</h3>
+    <p>Planejamento das ações para resposta a incidentes de segurança da informação, com o objetivo de orientar a atuação imediata das áreas envolvidas na identificação, contenção e mitigação de eventos que possam impactar a operação da WeClever. O PRI estabelece diretrizes claras para acionamento, definição de responsabilidades, comunicação e tomada de decisão, garantindo uma resposta coordenada e ágil.</p>
+
+    <h3>Plano de Comunicação a Incidente</h3>
+    <p>O plano de comunicação a incidentes refere-se ao fluxo de informações internas necessário para garantir a rápida identificação, reporte e tratamento de incidentes que possam impactar a operação da WeClever. Seu objetivo é assegurar uma comunicação clara, ágil e coordenada entre as áreas envolvidas, evitando atrasos e agravamento do evento.</p>
+    <p>Deve contemplar minimamente a definição de critérios de classificação e severidade dos incidentes, fluxo de comunicação e escalonamento, canais oficiais a serem utilizados, responsáveis pelo reporte e acompanhamento, além da padronização do registro das informações e da periodicidade de atualização durante o tratamento. Também deve prever gatilhos para escalonamento à gestão de crise, quando aplicável.</p>
+
+    <h2>Comitê de Continuidade de Negócios</h2>
+    <p>A equipe multidisciplinar eleita pela Alta Administração para compor o Comitê de Continuidade de Negócios é fundamental para identificar quais ações devem ser tomadas em caso de incidentes, e para auxiliar na tomada de decisões, fluxo de comunicação e capacidade de resposta operacional.</p>
+    <p>O corpo principal do comitê é composto por um líder, um suplente, complementado pelos membros fixos e, conforme o tipo e a necessidade identificada, pelos membros eletivos. Por padrão, o líder do comitê é a posição hierárquica mais alta disponível no momento, e é o responsável pela Gestão de Continuidade de Negócios.</p>
+    <p>A equipe do Comitê de Continuidade de Negócio será composta por pessoas/áreas-chave que serão acionadas, e por membros eletivos, a depender da categoria de crise/contingência. A lista com os membros fixos e seus contatos está disponível logo abaixo, na seção "Membros Fixos".</p>
+
+    <h3>Líder do Comitê</h3>
+    <p>O líder do comitê é responsável pelo comitê e pelas suas atividades, seja na fase de Planejamento e Preparação quanto na fase de Resposta, com as seguintes responsabilidades:</p>
+
+    <table>
+      <tr>
+        <th>Fase de Planejamento e Preparação</th>
+        <th>Fase de Resposta</th>
+      </tr>
+      <tr>
+        <td>Preparar e treinar o comitê; implementar as ferramentas de gestão de continuidade de negócios: planos de mitigação/ação, revisão contínua; organizar as revisões do Plano de Continuidade de Negócios; alocar recursos para preparação; gerenciar a implementação do Plano de Continuidade de Negócios; desenvolver treinamentos de conscientização, testes e garantir a preparação para continuidade de negócios; elaborar relatórios e reportes; liderar o processo de "Revisar Evento" com as lições aprendidas.</td>
+        <td>Analisar os gatilhos de interrupção e ativar o PCN; convocar os membros fixos do comitê e avaliar a participação dos membros eletivos conforme cenário de interrupção; liderar o comitê durante uma interrupção; liderar os planos de resposta e aprovação final das ações realizadas pelo comitê; aprovar a presença e participação de consultores externos; reportar ou escalonar a situação para o presidente da WeClever; servir como ponto de contato inicial para receber informações de incidentes e avaliar os fatos; direcionar as primeiras atividades e ações de resposta aos envolvidos; organizar as reuniões do comitê; suportar as ações e realizar as atividades de gestão do comitê durante o período de ativação do PCN.</td>
+      </tr>
+    </table>
+
+    <p>Inicialmente o líder é um responsável sênior, mas no início da fase da resposta outra pessoa poderá ser nomeada para a posição conforme o assunto da interrupção.</p>
+    <p>O líder é o principal ponto de contato para quaisquer questões críticas que possam impactar a continuidade da empresa. É o responsável por fornecer conselhos iniciais, avaliar os gatilhos e solicitar a ativação do comitê e da sua primeira reunião, e atua em estreita colaboração com os demais membros, fixos ou eletivos, de continuidade de negócios.</p>
+
+    <h3>Membros Fixos</h3>
+    <p>Os membros fixos do comitê são gestores de áreas relacionadas aos processos ou produtos críticos, e gestores relacionados aos suportes imediatos em qualquer interrupção. Durante a primeira reunião do comitê, eles obrigatoriamente deverão ser acionados, e poderão ser liberados somente com a autorização do líder do comitê. Cada membro fixo deve nomear um suplente do comitê.</p>
+    <p>Ao ser acionado, o membro deve se dedicar completamente à gestão da interrupção, permitindo que foque nas melhores decisões de negócio e no menor tempo. As atividades rotineiras devem ser repassadas para outro profissional.</p>
+    <p>As atividades designadas para cada membro do comitê poderão ser compartilhadas ou delegadas para o suplente ou algum membro da sua equipe, mas a responsabilidade de reporte e decisão não poderá ser delegada.</p>
+
+    <table>
+      <tr>
+        <th>Membros Fixos</th>
+        <th>Fase de Planejamento e Preparação</th>
+        <th>Fase de Resposta</th>
+      </tr>
+      <tr>
+        <td>João Abreu</td>
+        <td>Apoia o líder na estruturação e organização da continuidade. Contribui na construção dos planos, acompanhamento das atividades e alinhamento entre as áreas.</td>
+        <td>Apoia ou substitui o líder na gestão de incidentes, quando necessário. Contribui na coordenação das ações, acompanhamento das decisões e continuidade da condução de incidentes.</td>
+      </tr>
+      <tr>
+        <td>Claudia Pelegrinelli</td>
+        <td>Apoia a prevenção de incidentes, garantindo conformidade com leis e políticas e a disponibilidade de estrutura e recursos necessários. Contribui na construção dos planos e na organização dos processos.</td>
+        <td>Atua na gestão de incidentes, orientando decisões com base em riscos e requisitos legais e garantindo infraestrutura e recursos para continuidade das operações. Contribui na redução de impactos e na manutenção da operação segura e conforme.</td>
+      </tr>
+      <tr>
+        <td>Renato Beraldo</td>
+        <td>Garante a disponibilidade, segurança e recuperação dos sistemas e plataformas críticas. Contribui na identificação de sistemas essenciais, definição de estratégias de contingência e elaboração dos planos de recuperação.</td>
+        <td>Responsável por restabelecer e manter os sistemas durante um incidente, assegurando a continuidade dos serviços. Contribui na execução dos planos de recuperação, na análise de impactos e na estabilização dos ambientes tecnológicos.</td>
+      </tr>
+    </table>
+
+    <p><strong>Lista de Contatos do Comitê</strong> <span style="font-weight:400; font-size:12px; color:#0F6E56;">(Anexo I · Classificação: Uso Interno · Rev. 01)</span></p>
+    <table>
+      <tr>
+        <th>Função</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Celular</th>
+        <th>E-mail</th>
+      </tr>
+      <tr>
+        <td>Líder do Comitê</td>
+        <td>Ana Abreu</td>
+        <td>CEO</td>
+        <td>35 99808-6446</td>
+        <td>ana.abreu@weclever.co</td>
+      </tr>
+      <tr>
+        <td>Membro Fixo do Comitê</td>
+        <td>João Abreu</td>
+        <td>Head Produto</td>
+        <td>35 99146-0862</td>
+        <td>joao.abreu@weclever.co</td>
+      </tr>
+      <tr>
+        <td>Membro Fixo do Comitê</td>
+        <td>Claudia Pelegrinelli</td>
+        <td>DPO</td>
+        <td>35 99177-0009</td>
+        <td>claudia.pelegrinelli@weclever.co</td>
+      </tr>
+      <tr>
+        <td>Membro Fixo do Comitê</td>
+        <td>Renato Beraldo</td>
+        <td>Desenvolvedor</td>
+        <td>35 99962-1472</td>
+        <td>renato.beraldo@weclever.co</td>
+      </tr>
+    </table>
+
+    <h2>Processos Vitais</h2>
+    <p>Processo vital pode ser definido como um processo essencial da WeClever que, uma vez paralisado por tempo superior ao definido pela unidade gestora do negócio, irá afetar sensivelmente as operações e serviços da Companhia, gerando maior impacto nos clientes internos e externos. Segue a lista de processos críticos:</p>
+
+    <table>
+      <tr>
+        <th>Macroprocesso</th>
+        <th>Processo</th>
+        <th>MTPD</th>
+        <th>RTO</th>
+        <th>RPO</th>
+      </tr>
+      <tr>
+        <td>Gestão da plataforma</td>
+        <td>Monitoramento do ambiente</td>
+        <td>8 horas</td>
+        <td>4 horas</td>
+        <td>8 horas</td>
+      </tr>
+      <tr>
+        <td>Gestão da plataforma</td>
+        <td>Análise de dados</td>
+        <td>8 horas</td>
+        <td>4 horas</td>
+        <td>8 horas</td>
+      </tr>
+      <tr>
+        <td>Gestão de Contas</td>
+        <td>Relacionamento com clientes</td>
+        <td>4 horas</td>
+        <td>2 horas</td>
+        <td>2 horas</td>
+      </tr>
+      <tr>
+        <td>Gestão de Contas</td>
+        <td>Operacionalização</td>
+        <td>4 horas</td>
+        <td>2 horas</td>
+        <td>1 hora</td>
+      </tr>
+      <tr>
+        <td>Trabalhista</td>
+        <td>Pessoas</td>
+        <td>8 horas</td>
+        <td>2 horas</td>
+        <td>4 horas</td>
+      </tr>
+    </table>
+
+    <h2>Sanções e Punições</h2>
+    <p>Na ocorrência de violação desta Política, as providências aplicadas podem ser ações disciplinares, educativas ou corretivas, advertências, suspensão das atividades e até desligamentos, conforme a gravidade da situação, estando sujeitos ainda às medidas judiciais cabíveis.</p>
+
+    <h2>Revisões</h2>
+    <p>O Plano de Continuidade de Negócios deve ser revisado anualmente, avaliando a necessidade de atualização deste e de outros documentos relacionados, visando manter-se alinhado com as premissas e valores da WeClever, tanto quanto para garantir sua adesão às regulações locais e externas.</p>
+
+    <h2>Documentos Referência</h2>
+    <ul>
+      <li>Plano de Resposta a Incidentes — WeClever</li>
+      <li>Plano de Comunicação de Incidentes — WeClever</li>
+    </ul>
+
+  </div>
+</div>
+
+</body>
+</html>
