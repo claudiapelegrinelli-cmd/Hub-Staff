@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Treinamento de Compliance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 24px 60px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  #content {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #ECFDF3;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #0F6E56;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #003F2E;
+    margin: 0 0 14px;
+    line-height: 1.3;
+  }
+  .summary-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #00593E;
+    margin: 0 0 8px;
+  }
+  .body-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #003F2E;
+    margin: 0 0 10px;
+  }
+  .expand-btn {
+    background: none;
+    border: none;
+    color: #01A972;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+  }
+  .expanded {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #0F6E56;
+  }
+  .mito-card {
+    background: #01A972;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+    cursor: pointer;
+  }
+  .mito-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #003F2E;
+    opacity: 0.7;
+    margin: 0 0 6px;
+  }
+  .mito-question {
+    font-size: 14px;
+    font-weight: 700;
+    color: #003F2E;
+    margin: 0;
+  }
+  .mito-answer {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,63,46,0.2);
+  }
+  .mito-tag {
+    font-size: 13px;
+    font-weight: 800;
+    color: #003F2E;
+    margin: 0 0 4px;
+  }
+  .mito-explain {
+    font-size: 13px;
+    color: #003F2E;
+    margin: 0;
+  }
+  .quiz-opt {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,89,62,0.25);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #003F2E;
+    font-size: 13px;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  .quiz-feedback {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 10px 0 0;
+    display: none;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.45; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.5; top:300px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.45; top:600px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.5; bottom:60px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+  <div class="deco" style="width:35px; height:35px; background:#66D681; opacity:0.45; top:900px; right:100px; animation-duration:4s; animation-delay:1.4s;"></div>
+  <div class="deco" style="width:50px; height:50px; background:#00593E; opacity:0.5; top:1200px; right:-10px; animation-duration:4.8s; animation-delay:0.8s;"></div>
+
+  <div id="content">
+
+    <div class="card">
+      <p class="eyebrow">Introdução</p>
+      <p class="body-text">Neste treinamento, vamos mergulhar na importância de seguir normas e regulamentos dentro da WeClever! Nosso objetivo é garantir que todos os colaboradores entendam suas responsabilidades na manutenção da integridade e da ética em todas as ações e decisões.</p>
+      <p class="body-text">Compliance não é apenas seguir regras, é sobre construir uma cultura de transparência, honestidade e respeito mútuo — e descobrir como cada um de nós pode contribuir para um ambiente de trabalho seguro e ético.</p>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · O que é a LGPD?</p>
+      <p class="title">A lei que pode te colocar (e à empresa) numa fria</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">A LGPD protege a coleta, o armazenamento e o uso de dados de terceiros. Na WeClever, trabalhamos com dados pessoais recebidos através dos leads — e somos todos responsáveis pela proteção e correta utilização dessas informações.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">A Lei Geral de Proteção de Dados — mais conhecida pela sigla LGPD — tem o objetivo de proteger todo tipo de coleta, armazenamento e uso de dados de terceiros, de forma que garanta a segurança e a privacidade de todas as informações pessoais do indivíduo. Na WeClever, trabalhamos com dados pessoais que são recebidos através dos leads. Os dados pessoais aos quais temos acesso devem ser utilizados exclusivamente para uma finalidade determinada. Somos todos responsáveis pela proteção e correta utilização dessas informações.</div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · O que são dados pessoais?</p>
+      <p class="title">Isso aqui é dado pessoal (você lida com isso todo dia)</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Dados pessoais são todas as informações que podem identificar uma pessoa física, direta ou indiretamente — muito mais coisas do dia a dia do que parece.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Dados pessoais são todas as informações que podem identificar uma pessoa física, direta ou indiretamente:
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Nome</li>
+          <li>CPF</li>
+          <li>Data de Nascimento</li>
+          <li>RG</li>
+          <li>Endereço</li>
+          <li>Telefone</li>
+          <li>E-mail</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Dados pessoais sensíveis</p>
+      <p class="title">Os dados que merecem cuidado redobrado</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Dados sensíveis são informações capazes de gerar discriminação ao titular do dado — saúde, orientação sexual, biometria, raça, religião. Tratar isso sem cuidado não é só falha ética — é infração legal.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Existem categorias de dados que requerem um tratamento especial, entre elas estão os dados sensíveis. Esta categoria de dados pessoais refere-se às informações capazes de gerar discriminação ao titular do dado:
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Dados de saúde</li>
+          <li>Vida sexual ou orientação sexual</li>
+          <li>Informações genéticas ou biométricas</li>
+          <li>Origens racial ou étnica</li>
+          <li>Ideologia política</li>
+          <li>Convicção religiosa</li>
+          <li>Filiação a sindicatos, organização religiosa, filosófica ou política</li>
+        </ul>
+      </div>
+
+      <div class="mito-card" onclick="revealMito(this)">
+        <p class="mito-label">Mito ou verdade? Toque para revelar</p>
+        <p class="mito-question">"Um lead deixou o e-mail dele pra baixar um material gratuito. Posso usar esse contato depois pra divulgar outro produto da WeClever."</p>
+        <div class="mito-answer">
+          <p class="mito-tag">🔴 Mito</p>
+          <p class="mito-explain">Dado coletado para uma finalidade específica não pode ser reaproveitado para outra finalidade sem novo consentimento. Usar o e-mail pra divulgar algo diferente do que a pessoa autorizou fere o princípio da finalidade da LGPD.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · DPO - Encarregado de Dados</p>
+      <p class="title">Quem cuida da proteção de dados por aqui</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">O DPO é o canal de comunicação entre os titulares de dados, a autoridade nacional, o controlador e o operador. Na WeClever, é a Claudia Pelegrinelli.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Encarregado de dados (DPO): responsável por atuar como canal de comunicação entre os titulares de dados, a autoridade nacional, o controlador e o operador. A DPO da WeClever é Claudia Pelegrinelli, que orienta todos da WeClever sobre os procedimentos adequados para o tratamento de dados.
+        <br><br>
+        Qualquer pessoa poderá entrar em contato através do e-mail <a href="mailto:dpo@weclever.co" style="color:#01A972;">dpo@weclever.co</a>, ou ainda, pelo nosso canal de ouvidoria: <a href="mailto:ouvidoria@weclever.co" style="color:#01A972;">ouvidoria@weclever.co</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Atendimento Crítico</p>
+      <p class="title">Quando o atendimento pede atenção redobrada</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Um atendimento é crítico quando o cliente traz algum conteúdo discriminatório ou inapropriado. Nesses casos, Liderança e Compliance devem ser comunicados imediatamente.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Entendemos que um atendimento é crítico quando nele o cliente traz algum conteúdo, seja discriminatório ou inapropriado.
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li><strong style="color:#00593E;">Atendimento com conteúdo discriminatório</strong><br>Exemplo: racial, étnico, religioso, político, orientação sexual.</li>
+          <li style="margin-top:8px;"><strong style="color:#00593E;">Atendimento com conteúdo inapropriado</strong><br>Exemplo: vida sexual, nudez, importunação sexual, constrangimento.</li>
+        </ul>
+        <p style="font-weight: 800; color: #01A972; margin-top: 10px;">Liderança e Compliance deverão ser comunicados IMEDIATAMENTE!</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Dicas de Segurança da Informação</p>
+      <p class="title">Pequenos hábitos, grandes proteções</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Senhas fortes, cuidado com o que você compartilha e atenção a qualquer anormalidade no sistema — pequenos hábitos que evitam grandes dores de cabeça.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Quando o assunto é segurança da informação, é muito importante estar atento a alguns cuidados básicos, tais como:
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Crie senhas fortes e exclusivas: use senhas difíceis de chegar a ela, com uma combinação de letras maiúsculas, minúsculas, números e caracteres especiais;</li>
+          <li>Evite usar informações pessoais óbvias, como datas de nascimento. Exemplos: gaT!Esc#l?Cas!</li>
+          <li>Não compartilhe suas senhas: lembre-se de que a sua senha é a sua identidade digital. Em caso de algum incidente de segurança, as evidências são coletadas de acordo com a identidade digital de cada um;</li>
+          <li>Coloque senha de acesso ao seu notebook de trabalho;</li>
+          <li>Não compartilhe suas senhas com outros usuários;</li>
+          <li>Não altere qualquer documento que tenha acesso a não ser que tenha autorização para isso;</li>
+          <li>Salve seu material e informações de trabalho no drive do endereço de e-mail corporativo;</li>
+          <li>Caso perceba que alguma informação se perdeu ou alguma anormalidade no sistema e plataformas que utiliza, nos avise — assim podemos te ajudar a entender o que ocorreu.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Você sabe o que é Phishing?</p>
+      <p class="title">A pescaria em que você pode virar a isca</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Phishing é uma técnica usada por criminosos para enganar vítimas e obter dados confidenciais, fingindo ser uma entidade confiável — por e-mail, telefone ou mensagem.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Phishing é uma técnica usada por criminosos para enganar as vítimas e obter dados confidenciais, como senhas, números de cartão de crédito, informações bancárias ou outros dados pessoais, fingindo ser uma entidade confiável.
+        <br><br>
+        Os golpistas costumam contatar as vítimas por e-mail, telefone ou mensagem de texto, usando táticas psicológicas, como urgência, medo ou recompensa, para manipulá-las e fazê-las agir sem suspeitar da autenticidade da comunicação. O termo phishing vem da palavra em inglês fishing (pesca), pois os criminosos lançam iscas para "pescar" as informações das vítimas.
+        <br><br>
+        <strong style="color:#00593E;">Como reconhecer phishing?</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Verificar o endereço de e-mail, o número de telefone ou o link do remetente, e observar se há erros de ortografia, domínios desconhecidos ou caracteres estranhos;</li>
+          <li>Desconfiar de mensagens que solicitam informações confidenciais que exigem ações imediatas, que oferecem vantagens excessivas ou que contêm erros gramaticais ou de formatação;</li>
+          <li>Não clicar em links, abrir anexos ou baixar arquivos de fontes não confiáveis, e verificar a URL dos sites antes de inserir qualquer dado;</li>
+          <li>Não fornecer informações pessoais ou financeiras por e-mail, telefone ou mensagem de texto, e sempre confirmar a identidade do remetente por outros meios.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Antes de Compartilhar</p>
+      <p class="title">As 3 perguntas antes de clicar em "compartilhar"</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Antes de compartilhar qualquer informação, pergunte-se: você tem autorização? Quem vai receber também tem? E para qual finalidade será usada?</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Dentro das atividades do dia a dia é sempre importante fazer 3 perguntas antes de compartilhar uma informação:
+        <ol style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Tenho autorização para compartilhar esses dados?</li>
+          <li>A pessoa que irá receber essa informação tem autorização para acessar esses dados?</li>
+          <li>Para qual finalidade a informação compartilhada será utilizada?</li>
+        </ol>
+        <br>
+        Avalie o compartilhamento dos documentos: quando se trata de compartilhar documentos, verifique se a pessoa realmente precisa da informação antes de compartilhar. De tempos em tempos, dê uma olhada em quem tem acesso aos seus documentos mais importantes e, se necessário, faça ajustes.
+        <br><br>
+        Selecione o arquivo que você quer visualizar e clique em "Compartilhar": serão exibidos todos que têm acesso ao seu arquivo, e é possível remover, corrigir ou permitir o acesso. Decida como as pessoas podem usar seu arquivo. Selecione uma opção:
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Leitor</li>
+          <li>Comentador</li>
+          <li>Editor</li>
+        </ul>
+        <br>
+        Se você clicar em Configurações também é possível editar as configurações:
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Os editores podem alterar permissões e compartilhar;</li>
+          <li>Os leitores e comentaristas podem ver a opção de fazer o download, imprimir e copiar o arquivo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Como compartilhar um documento de forma segura</p>
+      <p class="title">Compartilhar com segurança, passo a passo</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">No Google Drive, defina sempre o acesso como "Restrito", escolha o papel certo (Leitor, Comentador ou Editor) e revise as configurações extras antes de enviar o link.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        Ao compartilhar um documento no Google Drive:
+        <ol style="margin: 8px 0 0; padding-left: 20px;">
+          <li>Clique em "Compartilhar" no canto superior do documento;</li>
+          <li>Em "Adicione pessoas e grupos", digite o e-mail de quem deve ter acesso;</li>
+          <li>Escolha o papel de cada pessoa: Leitor, Comentador ou Editor;</li>
+          <li>Em "Acesso geral", mantenha como "Restrito" — assim só quem tem o e-mail liberado consegue abrir;</li>
+          <li>No ícone de engrenagem (Configurações), revise se editores podem alterar permissões e compartilhar, e se leitores/comentaristas podem baixar, imprimir ou copiar o arquivo;</li>
+          <li>Clique em "Concluído" para salvar.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Compliance · Dicas para uma senha segura</p>
+      <p class="title">Quanto tempo alguém levaria pra descobrir sua senha?</p>
+      <p class="summary-label">Em 30 segundos</p>
+      <p class="body-text">Quanto mais longa e variada (letras, números e símbolos), mais tempo um criminoso levaria para quebrar sua senha — a diferença é de segundos para milhares de anos.</p>
+      <button class="expand-btn" onclick="toggleExpand(this)">Quero entender melhor ↓</button>
+      <div class="expanded">
+        <p style="margin: 0 0 10px;">Tempo estimado para "quebrar" uma senha, de acordo com o tamanho e a combinação de caracteres:</p>
+        <div style="overflow-x: auto;">
+        <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+          <tr style="background:#01A972; color:#EAF6F1;">
+            <th style="padding:6px; text-align:left;">Caracteres</th>
+            <th style="padding:6px; text-align:left;">Só números</th>
+            <th style="padding:6px; text-align:left;">Letras minúsculas</th>
+            <th style="padding:6px; text-align:left;">Minúsc. e maiúsc.</th>
+            <th style="padding:6px; text-align:left;">+ números</th>
+            <th style="padding:6px; text-align:left;">+ símbolos</th>
+          </tr>
+          <tr><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">4</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td></tr>
+          <tr><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">7</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">2 segundos</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">7 segundos</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">31 segundos</td></tr>
+          <tr><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">9</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">10 segundos</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">1 hora</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">7 horas</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">2 dias</td></tr>
+          <tr><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">11</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">Instantâneo</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">2 horas</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">5 meses</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">3 anos</td><td style="padding:6px; border-bottom:1px solid rgba(0,89,62,0.15);">34 anos</td></tr>
+          <tr><td style="padding:6px;">12</td><td style="padding:6px;">2 segundos</td><td style="padding:6px;">2 dias</td><td style="padding:6px;">24 anos</td><td style="padding:6px;">200 anos</td><td style="padding:6px;">3 mil anos</td></tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="body-text" style="margin:0;">Aproveite para configurar sua assinatura de e-mail com o layout e informação de segurança <a href="https://docs.google.com/document/d/1r9ZdKTNjbmmKrzp7Ypngk6hcVFi3fwc31NXJZLiXTKU/edit?tab=t.0" target="_blank" rel="noopener" style="color:#01A972; font-weight:700;">&lt;&lt;AQUI&gt;&gt;</a></p>
+    </div>
+
+    <div class="card">
+      <p class="summary-label">Testa o que você absorveu</p>
+      <p class="body-text">Um cliente pede para não entrarem mais em contato com ele. O que fazer?</p>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Ignorar o pedido e continuar o contato normalmente</button>
+      <button class="quiz-opt" data-correct="true" onclick="answerQuiz(this)">Enviar o número para a blocklist e comunicar o cliente/B2B</button>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Bloquear só no seu WhatsApp pessoal</button>
+      <p class="quiz-feedback"></p>
+    </div>
+
+    <div class="card">
+      <p class="body-text">Você recebe um e-mail "urgente" pedindo pra confirmar sua senha clicando em um link. O que fazer?</p>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Clicar rápido, já que é urgente</button>
+      <button class="quiz-opt" data-correct="true" onclick="answerQuiz(this)">Não clicar e verificar o remetente antes de qualquer ação</button>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Responder o e-mail com a senha</button>
+      <p class="quiz-feedback"></p>
+    </div>
+
+    <div class="card">
+      <p class="body-text">Um cliente traz, durante o atendimento, um comentário de conteúdo discriminatório. O que fazer?</p>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Seguir o atendimento normalmente, sem avisar ninguém</button>
+      <button class="quiz-opt" data-correct="true" onclick="answerQuiz(this)">Comunicar Liderança e Compliance imediatamente</button>
+      <button class="quiz-opt" data-correct="false" onclick="answerQuiz(this)">Registrar só se o cliente insistir no assunto</button>
+      <p class="quiz-feedback"></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleExpand(btn) {
+  var el = btn.nextElementSibling;
+  var isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? 'Quero entender melhor ↓' : 'Mostrar menos ↑';
+}
+
+function revealMito(card) {
+  card.querySelector('.mito-answer').style.display = 'block';
+  card.style.cursor = 'default';
+  card.onclick = null;
+}
+
+function answerQuiz(btn) {
+  var correct = btn.getAttribute('data-correct') === 'true';
+  var group = btn.parentElement;
+  var feedback = group.querySelector('.quiz-feedback');
+  group.querySelectorAll('.quiz-opt').forEach(function(b) {
+    b.disabled = true;
+    b.style.opacity = '0.6';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? '#66D681' : '#F25F33';
+  feedback.style.display = 'block';
+  feedback.style.color = correct ? '#66D681' : '#F5A28C';
+  feedback.textContent = correct
+    ? 'Isso mesmo! Você já sabe como agir nessa situação.'
+    : 'Não é bem assim — vale revisar o tópico acima antes de seguir.';
+}
+</script>
+
+</body>
+</html>
