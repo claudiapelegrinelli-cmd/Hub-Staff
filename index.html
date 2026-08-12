@@ -66,11 +66,11 @@
    ========================================================== */
 
 const dots = [
-  { x:208.3, y:273.4, r:65.5, color:'#01A972', topic:'Sobre Nós',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/18e35suwTon3NKNZAHUoz7AkDXHQ90hlf/edit' },
-  { x:399.7, y:273.4, r:65.7, color:'#01A972', topic:'Estrutura',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1gyee1MjczRLJNfmNdDPTizVZYiLAiMiD/edit' },
-  { x:591.1, y:273.4, r:65.7, color:'#01A972', topic:'Políticas e Compliance', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/14D-gnr6EIeGVN-a5QBiET5WVNkaQdkxZ/edit' },
-  { x:304.0, y:463.2, r:65.5, color:'#01A972', topic:'Pessoas',                url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1hKc0KxPEdmBR1AxcR3SuPccs5jC4Ak61/edit' },
-  { x:495.4, y:463.2, r:65.7, color:'#01A972', topic:'Redes Sociais',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1BFUI1XI5KVolZHxRhpVwIDcBaPZRp_eL/edit' },
+  { x:208.3, y:273.4, r:65.5, color:'#B6FE80', topic:'Sobre Nós',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/18e35suwTon3NKNZAHUoz7AkDXHQ90hlf/edit' },
+  { x:399.7, y:273.4, r:65.7, color:'#B6FE80', topic:'Estrutura',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1gyee1MjczRLJNfmNdDPTizVZYiLAiMiD/edit' },
+  { x:591.1, y:273.4, r:65.7, color:'#B6FE80', topic:'Políticas e Compliance', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/14D-gnr6EIeGVN-a5QBiET5WVNkaQdkxZ/edit' },
+  { x:304.0, y:463.2, r:65.5, color:'#B6FE80', topic:'Pessoas',                url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1hKc0KxPEdmBR1AxcR3SuPccs5jC4Ak61/edit' },
+  { x:495.4, y:463.2, r:65.7, color:'#B6FE80', topic:'Redes Sociais',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1BFUI1XI5KVolZHxRhpVwIDcBaPZRp_eL/edit' },
 ];
 
 const decorative = [
@@ -103,8 +103,8 @@ decorative.forEach((d) => {
   el.style.top = (d.y - d.r) + 'px';
   el.style.width = (d.r*2) + 'px';
   el.style.height = (d.r*2) + 'px';
-  el.style.background = '#D2FBDF';
-  el.style.opacity = '0.5';
+  el.style.background = '#B6FE80';
+  el.style.opacity = d.r > 50 ? '0.45' : '0.15';
   el.style.animationDelay = delay + 's';
   delay += 0.15;
   container.appendChild(el);
@@ -122,7 +122,7 @@ dots.forEach((d) => {
   el.style.width = (d.r*2) + 'px';
   el.style.height = (d.r*2) + 'px';
   el.style.background = d.color;
-  el.style.color = '#B6FE80';
+  el.style.color = '#003F2E';
   el.style.animationDelay = delay + 's';
   delay += 0.15;
   el.textContent = d.topic;
