@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Férias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  #content {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h2 {
+    color: #003F2E;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 14px;
+  }
+  h2:first-child {
+    margin-top: 0;
+  }
+  p {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 16px;
+  }
+  .highlight {
+    background: #ECFDF3;
+    border-left: 3px solid #01A972;
+    border-radius: 0;
+    padding: 12px 16px;
+    margin: 0 0 16px;
+    color: #003F2E;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 20px;
+    font-size: 14px;
+  }
+  th {
+    background: #01A972;
+    color: #EAF6F1;
+    text-align: left;
+    padding: 8px 10px;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(0,89,62,0.15);
+    color: #003F2E;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background: #ECFDF3;
+    border: none;
+    border-left: 3px solid #01A972;
+    border-radius: 0;
+    padding: 14px 16px;
+    margin: 0 0 16px;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #003F2E;
+    cursor: pointer;
+    text-align: left;
+  }
+  .toggle-icon {
+    font-size: 20px;
+    font-weight: 700;
+    color: #01A972;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+  .toggle-btn.open .toggle-icon {
+    transform: rotate(45deg);
+  }
+  .toggle-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .toggle-panel.open {
+    max-height: 600px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:200px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+  <div class="deco" style="width:35px; height:35px; background:#66D681; opacity:0.4; bottom:60px; right:100px; animation-duration:4s; animation-delay:1.4s;"></div>
+  <div class="deco" style="width:50px; height:50px; background:#00593E; opacity:0.4; top:700px; right:-10px; animation-duration:4.8s; animation-delay:0.8s;"></div>
+
+  <div id="content">
+
+    <h2>Política de Férias</h2>
+
+    <p>Após cada período trabalhado de 12 meses (período aquisitivo), você tem direito a 30 dias corridos de férias (período de gozo). Esse período pode ser fracionado em até 3 partes, sendo que uma delas precisa ter no mínimo 14 dias, e nenhuma pode ser inferior a 5 dias.</p>
+
+    <p>Você também pode optar por converter parte das férias em abono pecuniário — ou seja, gozar 20 dias e "vender" os outros 10. Nesse caso, o abono é considerado uma fração das férias, então você ainda terá direito a mais 2 períodos de gozo depois disso.</p>
+
+    <div class="highlight">As férias só podem começar de segunda a quarta-feira — nunca no dia anterior a um feriado ou fim de semana.</div>
+
+    <p>A programação de saída deve ser feita com até 30 dias de antecedência, e qualquer alteração nessa programação pode ser solicitada em até 60 dias antes da data já marcada.</p>
+
+    <p>A definição do período de gozo é feita em conjunto entre você e a WeClever, buscando o melhor momento para ambos. Não é permitido acumular dois períodos aquisitivos: se isso acontecer, a empresa paga multa (férias em dobro). Por isso, as férias devem ser programadas dentro dos 10 meses seguintes ao vencimento do período aquisitivo — a empresa mantém uma margem de segurança de 2 meses para evitar essa sobreposição. Na data limite, você já deve ter gozado todo o período de férias a que tem direito.</p>
+
+    <p>O Caju continua sendo creditado normalmente mesmo durante o mês de férias. O pagamento das férias ocorre 2 dias úteis antes da data de saída, e o pagamento do abono pecuniário (se você optar por ele) acontece junto com o primeiro período de gozo.</p>
+
+    <h2>Recesso de Estágio</h2>
+
+    <p>Se você é estagiário e seu contrato tem duração igual ou superior a 1 ano, você tem direito a um recesso de 30 dias — preferencialmente durante suas férias escolares. Esse recesso é remunerado normalmente, com a bolsa estágio.</p>
+
+    <p>Se o seu estágio tiver duração inferior a 1 ano, o recesso é concedido de forma proporcional ao tempo já estagiado. Consulte a tabela abaixo:</p>
+
+    <button class="toggle-btn" id="tabelaToggleBtn" onclick="toggleTabela()">
+      <span class="toggle-icon" id="tabelaToggleIcon">+</span>
+      <span>Ver tabela de proporcionalidade</span>
+    </button>
+
+    <div class="toggle-panel" id="tabelaPanel">
+      <table>
+        <tr><th>Tempo de estágio</th><th>Período a ser gozado</th></tr>
+        <tr><td>1 mês</td><td>2,5 dias</td></tr>
+        <tr><td>2 meses</td><td>5 dias</td></tr>
+        <tr><td>3 meses</td><td>7,5 dias</td></tr>
+        <tr><td>4 meses</td><td>10 dias</td></tr>
+        <tr><td>5 meses</td><td>12,5 dias</td></tr>
+        <tr><td>6 meses</td><td>15 dias</td></tr>
+        <tr><td>7 meses</td><td>17,5 dias</td></tr>
+        <tr><td>8 meses</td><td>20 dias</td></tr>
+        <tr><td>9 meses</td><td>22,5 dias</td></tr>
+        <tr><td>10 meses</td><td>25 dias</td></tr>
+        <tr><td>11 meses</td><td>27,5 dias</td></tr>
+        <tr><td>12 meses</td><td>30 dias</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleTabela() {
+    var btn = document.getElementById('tabelaToggleBtn');
+    var panel = document.getElementById('tabelaPanel');
+    var icon = document.getElementById('tabelaToggleIcon');
+    var isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  }
+</script>
+
+</body>
+</html>
