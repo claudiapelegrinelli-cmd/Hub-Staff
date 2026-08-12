@@ -84,6 +84,14 @@
     padding: 8px 10px;
     margin: 8px 0 0 28px;
   }
+  .payroll-note {
+    display: none;
+    font-size: 11px;
+    font-style: italic;
+    color: #5F5E5A;
+    margin: 6px 0 0 28px;
+    line-height: 1.5;
+  }
   .sus-field {
     display: none;
     margin: 10px 0 0 28px;
@@ -120,6 +128,12 @@
   <h1>Solicitação de benefícios</h1>
   <p class="subtitle">Preencha os dados abaixo. Ao enviar, seu e-mail vai abrir com a solicitação pronta para o time de Benefícios.</p>
 
+  <div class="benefit-card" style="background:#ECFDF3;">
+    <p style="font-size:13px; color:#00593E; margin:0; line-height:1.6;">
+      <strong style="color:#003F2E;">Caju, ZenKlub e Seguro de Vida em Grupo são benefícios automáticos</strong> — você já tem acesso a eles assim que se torna elegível.
+    </p>
+  </div>
+
   <label for="nome">Nome completo</label>
   <input type="text" id="nome" placeholder="Seu nome completo">
 
@@ -149,6 +163,7 @@
     </div>
     <p class="benefit-rule">Elegível: CLT · Poços de Caldas e outras localidades</p>
     <p class="warning" id="warn-unimed">Este benefício está disponível apenas para colaboradores CLT.</p>
+    <p class="payroll-note" id="note-unimed">💬 Lembrete: gera desconto mensal em folha (30% da mensalidade) + coparticipação conforme utilização. O plano é Regional para quem mora em Poços de Caldas e Nacional para outras localidades.</p>
     <div class="sus-field" id="sus-field">
       <label for="sus" style="margin-top:0;">Número da Carteirinha do SUS (obrigatório para Unimed)</label>
       <input type="text" id="sus" placeholder="000 0000 0000 0000">
@@ -168,6 +183,7 @@
     </div>
     <p class="benefit-rule">Elegível: CLT · apenas Poços de Caldas</p>
     <p class="warning" id="warn-uniodonto"></p>
+    <p class="payroll-note" id="note-uniodonto">💬 Lembrete: gera desconto mensal em folha (50% da mensalidade, valor fixo por pessoa). Utilização/coparticipação é paga diretamente ao fornecedor.</p>
   </div>
 
   <div class="benefit-card" id="card-wellhub">
@@ -177,6 +193,16 @@
     </div>
     <p class="benefit-rule">Elegível: CLT / Estagiário · Poços de Caldas e outras localidades</p>
     <p class="warning" id="warn-wellhub">Este benefício não possui restrição para o seu perfil.</p>
+  </div>
+
+  <div class="benefit-card" style="background:#ECFDF3; margin-top:24px;">
+    <p style="font-size:12px; color:#00593E; margin:0 0 10px; line-height:1.6;">
+      Os dados fornecidos neste formulário (nome, CPF e, quando aplicável, número da Carteirinha do SUS) serão utilizados exclusivamente para viabilizar sua adesão ao(s) benefício(s) selecionado(s) e serão compartilhados com as operadoras responsáveis (Unimed, Uniodonto e/ou Wellhub) para essa finalidade, conforme a LGPD.
+    </p>
+    <label style="display:flex; align-items:flex-start; gap:8px; font-size:12px; font-weight:400; color:#003F2E; margin:0;">
+      <input type="checkbox" id="chk-consent" style="margin-top:2px; width:16px; height:16px; flex-shrink:0;">
+      Li e concordo com o uso e compartilhamento dos meus dados para essa finalidade.
+    </label>
   </div>
 
   <button id="submitBtn" onclick="submitForm()">Enviar solicitação</button>
@@ -201,6 +227,9 @@ function handleChange() {
 
   var susField = document.getElementById('sus-field');
   susField.style.display = document.getElementById('chk-unimed').checked ? 'block' : 'none';
+
+  document.getElementById('note-unimed').style.display = document.getElementById('chk-unimed').checked ? 'block' : 'none';
+  document.getElementById('note-uniodonto').style.display = document.getElementById('chk-uniodonto').checked ? 'block' : 'none';
 
   var warnUnimed = document.getElementById('warn-unimed');
   warnUnimed.style.display = (document.getElementById('chk-unimed').checked && cargo && cargo !== 'CLT') ? 'block' : 'none';
@@ -241,6 +270,12 @@ function submitForm() {
 
   if (!unimed && !uniodonto && !wellhub) {
     msg.textContent = 'Selecione pelo menos um benefício.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (!document.getElementById('chk-consent').checked) {
+    msg.textContent = 'Você precisa concordar com o uso e compartilhamento dos seus dados para enviar a solicitação.';
     msg.style.display = 'block';
     return;
   }
