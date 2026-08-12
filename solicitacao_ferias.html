@@ -237,11 +237,20 @@
   <button id="submitBtn" onclick="submitForm()">Enviar solicitação</button>
   <p id="formMsg"></p>
   <p id="formSuccess"></p>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="onIframeLoad()"></iframe>
+  <form id="googleForm"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfGn8wkR3G0BqgITIKQnvM4kn8kcUI7RI880YvU55BrWpSEpQ/formResponse"
+        method="POST" target="hidden_iframe" style="display:none;">
+    <input type="text" name="entry.986970733" id="gformNome">
+    <input type="text" name="entry.116395047" id="gformAssunto">
+    <textarea name="entry.548615700" id="gformCorpo"></textarea>
+  </form>
 </div>
 
 <script>
-// Cole aqui a URL do seu Google Apps Script implantado (veja instruções no arquivo google-apps-script.gs)
-var SCRIPT_URL = 'https://script.google.com/a/macros/weclever.co/s/AKfycbwoYnWaIctH6Gzfvy4TNCIFFe3mxHT3Is6Q3qG5-abwk2xPeR2IY4xxyv9G4IxUAhAVwg/exec';
+var formSubmitted = false;
+var ultimoPayload = null;
 
 function enviarSolicitacao(payload) {
   var btn = document.getElementById('submitBtn');
@@ -253,37 +262,35 @@ function enviarSolicitacao(payload) {
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload)
-  })
-    .then(function(res) { return res.json(); })
-    .then(function(data) {
-      btn.disabled = false;
-      btn.textContent = 'Enviar solicitação';
-      if (data.status === 'ok') {
-        success.textContent = '✓ Solicitação enviada com sucesso! O time de Benefícios já foi notificado.';
-        success.style.display = 'block';
-      } else {
-        mostrarFallbackEmail(payload, 'Algo deu errado ao registrar sua solicitação automaticamente.');
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'Enviar solicitação';
-      mostrarFallbackEmail(payload, 'Não foi possível enviar automaticamente agora.');
-    });
+  ultimoPayload = payload;
+
+  document.getElementById('gformNome').value = payload.nome;
+  document.getElementById('gformAssunto').value = payload.assunto;
+  document.getElementById('gformCorpo').value = payload.corpo;
+
+  formSubmitted = true;
+  document.getElementById('googleForm').submit();
 }
 
-function mostrarFallbackEmail(payload, motivo) {
-  var msg = document.getElementById('formMsg');
+function onIframeLoad() {
+  if (!formSubmitted) return;
+
+  var btn = document.getElementById('submitBtn');
+  var success = document.getElementById('formSuccess');
+
+  btn.disabled = false;
+  btn.textContent = 'Enviar solicitação';
+  success.innerHTML = '✓ Solicitação enviada com sucesso! O time de Benefícios já foi notificado.<br><span style="font-weight:400; font-size:12px;">Não recebeu confirmação por e-mail em alguns minutos? <a href="#" onclick="enviarFallbackEmail(); return false;" style="color:#01A972;">Clique aqui para reenviar também por e-mail</a>.</span>';
+  success.style.display = 'block';
+}
+
+function enviarFallbackEmail() {
+  if (!ultimoPayload) return;
   var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
                  '&to=' + encodeURIComponent('beneficios@weclever.co') +
-                 '&su=' + encodeURIComponent(payload.assunto) +
-                 '&body=' + encodeURIComponent(payload.corpo);
-  msg.innerHTML = motivo + ' <a href="' + gmailUrl + '" target="_blank" style="color:#01A972; font-weight:700;">Clique aqui para enviar por e-mail manualmente</a>.';
-  msg.style.display = 'block';
+                 '&su=' + encodeURIComponent(ultimoPayload.assunto) +
+                 '&body=' + encodeURIComponent(ultimoPayload.corpo);
+  window.open(gmailUrl, '_blank');
 }
 
 function clearCltPeriods() {
