@@ -97,6 +97,18 @@
     margin-top: 10px;
     text-align: center;
   }
+  #formSuccess {
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #00593E;
+    background: #ECFDF3;
+    border: 1px solid #01A972;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    text-align: center;
+  }
   .radio-group {
     display: flex;
     gap: 16px;
@@ -126,7 +138,7 @@
 
 <div id="stage">
   <h1>Solicitação de férias / recesso</h1>
-  <p class="subtitle">Preencha os dados abaixo respeitando as regras da política de férias (CLT) ou de recesso (Estágio). Ao enviar, seu e-mail vai abrir com a solicitação pronta para o time de Benefícios.</p>
+  <p class="subtitle">Preencha os dados abaixo respeitando as regras da política de férias (CLT) ou de recesso (Estágio). Ao enviar, a solicitação vai direto para o time de Benefícios.</p>
 
   <label for="nome">Nome completo</label>
   <input type="text" id="nome" placeholder="Seu nome completo">
@@ -224,9 +236,56 @@
 
   <button id="submitBtn" onclick="submitForm()">Enviar solicitação</button>
   <p id="formMsg"></p>
+  <p id="formSuccess"></p>
 </div>
 
 <script>
+// Cole aqui a URL do seu Google Apps Script implantado (veja instruções no arquivo google-apps-script.gs)
+var SCRIPT_URL = 'https://script.google.com/a/macros/weclever.co/s/AKfycbwoYnWaIctH6Gzfvy4TNCIFFe3mxHT3Is6Q3qG5-abwk2xPeR2IY4xxyv9G4IxUAhAVwg/exec';
+
+function enviarSolicitacao(payload) {
+  var btn = document.getElementById('submitBtn');
+  var msg = document.getElementById('formMsg');
+  var success = document.getElementById('formSuccess');
+
+  msg.style.display = 'none';
+  success.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = 'Enviar solicitação';
+      if (data.status === 'ok') {
+        success.textContent = '✓ Solicitação enviada com sucesso! O time de Benefícios já foi notificado.';
+        success.style.display = 'block';
+      } else {
+        mostrarFallbackEmail(payload, 'Algo deu errado ao registrar sua solicitação automaticamente.');
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Enviar solicitação';
+      mostrarFallbackEmail(payload, 'Não foi possível enviar automaticamente agora.');
+    });
+}
+
+function mostrarFallbackEmail(payload, motivo) {
+  var msg = document.getElementById('formMsg');
+  var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
+                 '&to=' + encodeURIComponent('beneficios@weclever.co') +
+                 '&su=' + encodeURIComponent(payload.assunto) +
+                 '&body=' + encodeURIComponent(payload.corpo);
+  msg.innerHTML = motivo + ' <a href="' + gmailUrl + '" target="_blank" style="color:#01A972; font-weight:700;">Clique aqui para enviar por e-mail manualmente</a>.';
+  msg.style.display = 'block';
+}
+
 function clearCltPeriods() {
   document.querySelectorAll('.period-date').forEach(function(input) { input.value = ''; });
   document.querySelectorAll('.period-days').forEach(function(input) {
@@ -529,11 +588,14 @@ function submitForm() {
     }
   });
 
-  var mailto = 'mailto:beneficios@weclever.co' +
-               '?subject=' + encodeURIComponent('Solicitação de Férias - ' + nome) +
-               '&body=' + encodeURIComponent(corpo);
+  var assunto = 'Solicitação de Férias - ' + nome;
 
-  window.location.href = mailto;
+  enviarSolicitacao({
+    nome: nome,
+    tipo: 'CLT',
+    assunto: assunto,
+    corpo: corpo
+  });
 }
 
 function submitFormEstagio(nome, msg) {
@@ -606,11 +668,14 @@ function submitFormEstagio(nome, msg) {
   corpo += 'Dias solicitados agora: ' + diasTirar.toString().replace('.', ',') + '\n';
   corpo += 'Início do recesso: ' + dataInicio.toLocaleDateString('pt-BR') + ' (' + weekdayName(dataInicio) + ')\n';
 
-  var mailto = 'mailto:beneficios@weclever.co' +
-               '?subject=' + encodeURIComponent('Solicitação de Recesso de Estágio - ' + nome) +
-               '&body=' + encodeURIComponent(corpo);
+  var assunto = 'Solicitação de Recesso de Estágio - ' + nome;
 
-  window.location.href = mailto;
+  enviarSolicitacao({
+    nome: nome,
+    tipo: 'Estagiário',
+    assunto: assunto,
+    corpo: corpo
+  });
 }
 
 updateLayout();
