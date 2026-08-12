@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Solicitação de Férias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #003F2E;
+    margin: 0 0 6px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #0F6E56;
+    margin: 0 0 24px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #00593E;
+    margin: 18px 0 6px;
+  }
+  input[type="text"], input[type="date"], input[type="number"], select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    border: 1px solid rgba(0,89,62,0.3);
+    border-radius: 8px;
+    color: #003F2E;
+    background: #FFFFFF;
+  }
+  .card {
+    background: #ECFDF3;
+    border: 1px solid rgba(0,89,62,0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .period-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .period-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #003F2E;
+    margin: 14px 0 0;
+  }
+  .period-title:first-child {
+    margin-top: 0;
+  }
+  .info-note {
+    font-size: 11px;
+    font-style: italic;
+    color: #5F5E5A;
+    margin: 4px 0 0;
+    line-height: 1.5;
+  }
+  #submitBtn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    background: #01A972;
+    color: #EAF6F1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #formMsg {
+    display: none;
+    font-size: 13px;
+    color: #A32D2D;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .radio-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    color: #003F2E;
+    margin: 0;
+  }
+  .highlight {
+    background: #ECFDF3;
+    border-left: 3px solid #01A972;
+    border-radius: 0;
+    padding: 12px 16px;
+    margin: 10px 0 0;
+    color: #003F2E;
+    font-weight: 700;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <h1>Solicitação de férias / recesso</h1>
+  <p class="subtitle">Preencha os dados abaixo respeitando as regras da política de férias (CLT) ou de recesso (Estágio). Ao enviar, seu e-mail vai abrir com a solicitação pronta para o time de Benefícios.</p>
+
+  <label for="nome">Nome completo</label>
+  <input type="text" id="nome" placeholder="Seu nome completo">
+
+  <label>Você é:</label>
+  <div class="radio-group">
+    <label><input type="radio" name="tipo" value="clt" checked onchange="onTipoChange()"> CLT</label>
+    <label><input type="radio" name="tipo" value="estagio" onchange="onTipoChange()"> Estagiário</label>
+  </div>
+
+  <div id="clt-section">
+
+  <label>Quer converter parte das férias em abono pecuniário?</label>
+  <div class="radio-group">
+    <label><input type="radio" name="abono" value="nao" checked onchange="onAbonoChange()"> Não</label>
+    <label><input type="radio" name="abono" value="sim" onchange="onAbonoChange()"> Sim, vender 10 dias</label>
+  </div>
+
+  <div id="abono-field" style="display:none;">
+    <p class="info-note">Ao vender os 10 dias, você gozará os outros 20 dias, divididos em até 2 períodos.</p>
+  </div>
+
+  <label>Em quantos períodos você quer tirar os dias de gozo?</label>
+  <div class="radio-group">
+    <label><input type="radio" name="fracionamento" value="1" checked onchange="onFracChange()"> 1</label>
+    <label><input type="radio" name="fracionamento" value="2" onchange="onFracChange()"> 2</label>
+    <label id="frac3-label"><input type="radio" name="fracionamento" value="3" id="frac3Radio" onchange="onFracChange()"> 3</label>
+  </div>
+  <p class="info-note" id="fracNote">Se dividir em mais de 1 período, um deles precisa ter no mínimo 14 dias, e nenhum pode ter menos de 5 dias.</p>
+
+  <div class="card" id="periods-container">
+    <p class="period-title">Período 1</p>
+    <div class="period-block">
+      <div>
+        <label style="margin-top:0;">Data de início</label>
+        <input type="date" class="period-date" data-period="1">
+      </div>
+      <div>
+        <label style="margin-top:0;">Quantidade de dias</label>
+        <input type="number" class="period-days" data-period="1" min="5">
+      </div>
+    </div>
+
+    <p class="period-title" id="title-periodo-2" style="display:none;">Período 2 <span style="font-weight:400; font-size:11px; color:#5F5E5A;">(opcional — pode deixar em branco para decidir depois)</span></p>
+    <div class="period-block" id="block-periodo-2" style="display:none;">
+      <div>
+        <label style="margin-top:0;">Data de início</label>
+        <input type="date" class="period-date" data-period="2">
+      </div>
+      <div>
+        <label style="margin-top:0;">Quantidade de dias</label>
+        <input type="number" class="period-days" data-period="2" min="5">
+      </div>
+    </div>
+
+    <p class="period-title" id="title-periodo-3" style="display:none;">Período 3 <span style="font-weight:400; font-size:11px; color:#5F5E5A;">(opcional — pode deixar em branco para decidir depois)</span></p>
+    <div class="period-block" id="block-periodo-3" style="display:none;">
+      <div>
+        <label style="margin-top:0;">Data de início</label>
+        <input type="date" class="period-date" data-period="3">
+      </div>
+      <div>
+        <label style="margin-top:0;">Quantidade de dias</label>
+        <input type="number" class="period-days" data-period="3" min="5">
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div id="estagio-section" style="display:none;">
+
+    <label>Seu contrato de estágio tem duração igual ou superior a 1 ano?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="contratoAno" value="sim" checked onchange="onContratoAnoChange()"> Sim</label>
+      <label><input type="radio" name="contratoAno" value="nao" onchange="onContratoAnoChange()"> Não</label>
+    </div>
+    <p class="info-note" id="recesso30Note">Você tem direito a um recesso de 30 dias.</p>
+
+    <div id="meses-field" style="display:none;">
+      <label for="mesesEstagio">Quantos meses você já estagiou até agora (máx. 11)</label>
+      <input type="number" id="mesesEstagio" min="1" max="11" oninput="updateDiasRecesso()">
+      <div class="highlight" id="diasRecessoNote" style="display:none;"></div>
+
+      <div id="diasTirarWrap" style="display:none;">
+        <label for="diasTirarEstagio" id="diasTirarLabel">Quantos desses dias você quer tirar agora?</label>
+        <input type="number" id="diasTirarEstagio" min="0.5" step="0.5">
+      </div>
+    </div>
+
+    <label for="recessoData">Data de início do recesso</label>
+    <input type="date" id="recessoData">
+
+  </div>
+
+  <button id="submitBtn" onclick="submitForm()">Enviar solicitação</button>
+  <p id="formMsg"></p>
+</div>
+
+<script>
+function clearCltPeriods() {
+  document.querySelectorAll('.period-date').forEach(function(input) { input.value = ''; });
+  document.querySelectorAll('.period-days').forEach(function(input) {
+    input.value = '';
+    input.readOnly = false;
+    input.style.background = '';
+  });
+}
+
+function clearEstagioFields() {
+  document.getElementById('mesesEstagio').value = '';
+  document.getElementById('diasTirarEstagio').value = '';
+  document.getElementById('recessoData').value = '';
+  document.getElementById('diasRecessoNote').style.display = 'none';
+  document.getElementById('diasTirarWrap').style.display = 'none';
+}
+
+function onTipoChange() {
+  clearCltPeriods();
+  clearEstagioFields();
+  updateLayout();
+}
+
+function onAbonoChange() {
+  clearCltPeriods();
+  updateLayout();
+}
+
+function onFracChange() {
+  clearCltPeriods();
+  updateLayout();
+}
+
+function onContratoAnoChange() {
+  clearEstagioFields();
+  updateLayout();
+}
+
+function updateLayout() {
+  var tipo = document.querySelector('input[name="tipo"]:checked').value;
+  document.getElementById('clt-section').style.display = tipo === 'clt' ? 'block' : 'none';
+  document.getElementById('estagio-section').style.display = tipo === 'estagio' ? 'block' : 'none';
+
+  if (tipo === 'clt') {
+    var abono = document.querySelector('input[name="abono"]:checked').value;
+    document.getElementById('abono-field').style.display = abono === 'sim' ? 'block' : 'none';
+
+    var frac3Radio = document.getElementById('frac3Radio');
+    var frac3Label = document.getElementById('frac3-label');
+    if (abono === 'sim') {
+      frac3Label.style.display = 'none';
+      if (frac3Radio.checked) {
+        document.querySelector('input[name="fracionamento"][value="2"]').checked = true;
+      }
+    } else {
+      frac3Label.style.display = 'flex';
+    }
+
+    var frac = parseInt(document.querySelector('input[name="fracionamento"]:checked').value, 10);
+    document.getElementById('title-periodo-2').style.display = frac >= 2 ? 'block' : 'none';
+    document.getElementById('block-periodo-2').style.display = frac >= 2 ? 'grid' : 'none';
+    document.getElementById('title-periodo-3').style.display = frac >= 3 ? 'block' : 'none';
+    document.getElementById('block-periodo-3').style.display = frac >= 3 ? 'grid' : 'none';
+
+    var diasParaGozarPreview = (abono === 'sim') ? 20 : 30;
+    var dias1Input = document.querySelector('.period-days[data-period="1"]');
+    if (frac === 1) {
+      dias1Input.value = diasParaGozarPreview;
+      dias1Input.readOnly = true;
+      dias1Input.style.background = '#F5F5F5';
+    } else {
+      dias1Input.readOnly = false;
+      dias1Input.style.background = '';
+    }
+  } else {
+    var contratoAno = document.querySelector('input[name="contratoAno"]:checked').value;
+    document.getElementById('recesso30Note').style.display = contratoAno === 'sim' ? 'block' : 'none';
+    document.getElementById('meses-field').style.display = contratoAno === 'nao' ? 'block' : 'none';
+    if (contratoAno === 'nao') updateDiasRecesso();
+  }
+
+  setMinDates();
+}
+
+function updateDiasRecesso() {
+  var meses = parseInt(document.getElementById('mesesEstagio').value, 10);
+  var note = document.getElementById('diasRecessoNote');
+  var wrap = document.getElementById('diasTirarWrap');
+  var diasTirarInput = document.getElementById('diasTirarEstagio');
+
+  if (!meses || meses < 1 || meses > 11) {
+    note.style.display = 'none';
+    wrap.style.display = 'none';
+    return;
+  }
+
+  var dias = meses * 2.5;
+  var diasFormatado = dias.toString().replace('.', ',');
+  var mesesTexto = meses + (meses === 1 ? ' mês' : ' meses');
+  note.textContent = 'Por esse tempo de contrato (' + mesesTexto + '), você tem direito a ' + diasFormatado + ' dias de recesso.';
+  note.style.display = 'block';
+
+  wrap.style.display = 'block';
+  document.getElementById('diasTirarLabel').textContent = 'Quantos desses ' + diasFormatado + ' dias você quer tirar agora?';
+  diasTirarInput.setAttribute('max', dias);
+}
+
+function setMinDates() {
+  var hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  var minData = new Date(hoje);
+  minData.setDate(minData.getDate() + 30);
+  var minStr = minData.toISOString().slice(0,10);
+  document.querySelectorAll('.period-date').forEach(function(input) {
+    input.setAttribute('min', minStr);
+  });
+}
+
+function weekdayName(date) {
+  var dias = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  return dias[date.getDay()];
+}
+
+function addDays(date, days) {
+  var d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function dateKey(d) {
+  return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+}
+
+function getEaster(year) {
+  var a = year % 19;
+  var b = Math.floor(year / 100);
+  var c = year % 100;
+  var d = Math.floor(b / 4);
+  var e = b % 4;
+  var f = Math.floor((b + 8) / 25);
+  var g = Math.floor((b - f + 1) / 3);
+  var h = (19 * a + b - d - g + 15) % 30;
+  var i = Math.floor(c / 4);
+  var k = c % 4;
+  var l = (32 + 2 * e + 2 * i - h - k) % 7;
+  var m = Math.floor((a + 11 * h + 22 * l) / 451);
+  var month = Math.floor((h + l - 7 * m + 114) / 31);
+  var day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month - 1, day);
+}
+
+function getHolidaysForYear(year) {
+  var easter = getEaster(year);
+  return [
+    new Date(year, 0, 1),
+    new Date(year, 3, 21),
+    new Date(year, 4, 1),
+    new Date(year, 8, 7),
+    new Date(year, 9, 12),
+    new Date(year, 10, 2),
+    new Date(year, 10, 15),
+    new Date(year, 10, 20),
+    new Date(year, 11, 25),
+    addDays(easter, -48),
+    addDays(easter, -47),
+    addDays(easter, -2),
+    addDays(easter, 60)
+  ];
+}
+
+function isFeriado(date) {
+  var year = date.getFullYear();
+  var lista = getHolidaysForYear(year - 1).concat(getHolidaysForYear(year), getHolidaysForYear(year + 1));
+  var chave = dateKey(date);
+  return lista.some(function(h) { return dateKey(h) === chave; });
+}
+
+function submitForm() {
+  var msg = document.getElementById('formMsg');
+  msg.style.display = 'none';
+
+  var nome = document.getElementById('nome').value.trim();
+  if (!nome) {
+    msg.textContent = 'Preencha seu nome completo.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var tipo = document.querySelector('input[name="tipo"]:checked').value;
+
+  if (tipo === 'estagio') {
+    submitFormEstagio(nome, msg);
+    return;
+  }
+
+  var abono = document.querySelector('input[name="abono"]:checked').value === 'sim';
+  var diasAbono = abono ? 10 : 0;
+
+  var diasParaGozar = 30 - diasAbono;
+  var frac = parseInt(document.querySelector('input[name="fracionamento"]:checked').value, 10);
+
+  var periodos = [];
+  var somaDias = 0;
+  var temIndefinido = false;
+  var hoje = new Date();
+  hoje.setHours(0,0,0,0);
+
+  for (var i = 1; i <= frac; i++) {
+    var dateInput = document.querySelector('.period-date[data-period="' + i + '"]');
+    var daysInput = document.querySelector('.period-days[data-period="' + i + '"]');
+    var dataStr = dateInput.value;
+    var diasStr = daysInput.value;
+
+    if (i > 1 && !dataStr && !diasStr) {
+      periodos.push({ indefinido: true });
+      temIndefinido = true;
+      continue;
+    }
+
+    var dias = parseInt(diasStr, 10);
+
+    if (!dataStr || !dias) {
+      msg.textContent = i === 1
+        ? 'Preencha data e quantidade de dias do Período 1.'
+        : 'Preencha data e quantidade de dias do Período ' + i + ', ou deixe os dois em branco para decidir depois.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    if (dias < 5) {
+      msg.textContent = 'Nenhum período pode ter menos de 5 dias.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    var dataInicio = new Date(dataStr + 'T00:00:00');
+    var diaSemana = dataInicio.getDay();
+
+    if (diaSemana === 0 || diaSemana === 4 || diaSemana === 5 || diaSemana === 6) {
+      msg.textContent = 'O início das férias só pode ser de segunda a quarta-feira (período ' + i + ' caiu em ' + weekdayName(dataInicio) + ').';
+      msg.style.display = 'block';
+      return;
+    }
+
+    if (isFeriado(dataInicio)) {
+      msg.textContent = 'As férias não podem começar em um feriado (período ' + i + '). Escolha outra data.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    if (isFeriado(addDays(dataInicio, 1)) || isFeriado(addDays(dataInicio, 2))) {
+      msg.textContent = 'Essa data está muito próxima de um feriado (período ' + i + '). As férias não podem começar nos 2 dias que antecedem um feriado — escolha outra data.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    var diffDias = Math.round((dataInicio - hoje) / (1000 * 60 * 60 * 24));
+    if (diffDias < 30) {
+      msg.textContent = 'A programação de férias deve ser feita com pelo menos 30 dias de antecedência (período ' + i + ').';
+      msg.style.display = 'block';
+      return;
+    }
+
+    periodos.push({ indefinido: false, data: dataStr, dias: dias });
+    somaDias += dias;
+  }
+
+  if (!temIndefinido) {
+    if (frac > 1) {
+      var temPeriodoMaior = periodos.some(function(p) { return p.dias >= 14; });
+      if (!temPeriodoMaior) {
+        msg.textContent = 'Ao fracionar as férias, pelo menos um dos períodos precisa ter no mínimo 14 dias.';
+        msg.style.display = 'block';
+        return;
+      }
+    }
+
+    if (somaDias !== diasParaGozar) {
+      msg.textContent = 'A soma dos dias dos períodos (' + somaDias + ') precisa ser igual a ' + diasParaGozar + ' dias' + (abono ? ' (30 menos os ' + diasAbono + ' dias vendidos)' : '') + '.';
+      msg.style.display = 'block';
+      return;
+    }
+  } else if (somaDias > diasParaGozar) {
+    msg.textContent = 'A soma dos dias já preenchidos (' + somaDias + ') não pode ultrapassar ' + diasParaGozar + ' dias.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var corpo = 'Nome completo: ' + nome + '\n\n';
+  if (abono) {
+    corpo += 'Abono pecuniário: ' + diasAbono + ' dias vendidos\n';
+  }
+  corpo += 'Dias de gozo: ' + diasParaGozar + '\n\n';
+  periodos.forEach(function(p, idx) {
+    if (p.indefinido) {
+      corpo += 'Período ' + (idx+1) + ': a definir posteriormente\n';
+    } else {
+      var d = new Date(p.data + 'T00:00:00');
+      corpo += 'Período ' + (idx+1) + ': início em ' + d.toLocaleDateString('pt-BR') + ' (' + weekdayName(d) + ') — ' + p.dias + ' dias\n';
+    }
+  });
+
+  var mailto = 'mailto:beneficios@weclever.co' +
+               '?subject=' + encodeURIComponent('Solicitação de Férias - ' + nome) +
+               '&body=' + encodeURIComponent(corpo);
+
+  window.location.href = mailto;
+}
+
+function submitFormEstagio(nome, msg) {
+  var contratoAno = document.querySelector('input[name="contratoAno"]:checked').value === 'sim';
+  var diasDireito;
+  var diasTirar;
+  var descricaoTempo;
+
+  if (contratoAno) {
+    diasDireito = 30;
+    diasTirar = 30;
+    descricaoTempo = 'igual ou superior a 1 ano';
+  } else {
+    var meses = parseInt(document.getElementById('mesesEstagio').value, 10);
+    if (!meses || meses < 1 || meses > 11) {
+      msg.textContent = 'Informe quantos meses você já estagiou (entre 1 e 11).';
+      msg.style.display = 'block';
+      return;
+    }
+    diasDireito = meses * 2.5;
+    descricaoTempo = meses + (meses === 1 ? ' mês estagiado' : ' meses estagiados');
+
+    diasTirar = parseFloat(document.getElementById('diasTirarEstagio').value);
+    if (!diasTirar || diasTirar <= 0) {
+      msg.textContent = 'Informe quantos dias você quer tirar agora.';
+      msg.style.display = 'block';
+      return;
+    }
+    if (diasTirar > diasDireito) {
+      msg.textContent = 'Você só tem direito a ' + diasDireito.toString().replace('.', ',') + ' dias — reduza a quantidade que deseja tirar.';
+      msg.style.display = 'block';
+      return;
+    }
+  }
+
+  var dataStr = document.getElementById('recessoData').value;
+  if (!dataStr) {
+    msg.textContent = 'Preencha a data de início do recesso.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var dataInicio = new Date(dataStr + 'T00:00:00');
+  var diaSemana = dataInicio.getDay();
+
+  if (diaSemana === 0 || diaSemana === 4 || diaSemana === 5 || diaSemana === 6) {
+    msg.textContent = 'O início do recesso só pode ser de segunda a quarta-feira (caiu em ' + weekdayName(dataInicio) + ').';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (isFeriado(dataInicio)) {
+    msg.textContent = 'O recesso não pode começar em um feriado. Escolha outra data.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  if (isFeriado(addDays(dataInicio, 1)) || isFeriado(addDays(dataInicio, 2))) {
+    msg.textContent = 'Essa data está muito próxima de um feriado. O recesso não pode começar nos 2 dias que antecedem um feriado — escolha outra data.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  var corpo = 'Nome completo: ' + nome + '\n\n';
+  corpo += 'Tipo: Estagiário\n';
+  corpo += 'Duração do contrato: ' + descricaoTempo + '\n';
+  if (!contratoAno) {
+    corpo += 'Dias de direito: ' + diasDireito.toString().replace('.', ',') + '\n';
+  }
+  corpo += 'Dias solicitados agora: ' + diasTirar.toString().replace('.', ',') + '\n';
+  corpo += 'Início do recesso: ' + dataInicio.toLocaleDateString('pt-BR') + ' (' + weekdayName(dataInicio) + ')\n';
+
+  var mailto = 'mailto:beneficios@weclever.co' +
+               '?subject=' + encodeURIComponent('Solicitação de Recesso de Estágio - ' + nome) +
+               '&body=' + encodeURIComponent(corpo);
+
+  window.location.href = mailto;
+}
+
+updateLayout();
+</script>
+
+</body>
+</html>
