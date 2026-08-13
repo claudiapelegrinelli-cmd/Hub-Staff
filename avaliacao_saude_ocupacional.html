@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeClever - Avaliação NR17 Ergonomia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px 80px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  #content {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  p.intro {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 8px;
+  }
+  .highlight {
+    background: #ECFDF3;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 0 0 32px;
+    color: #003F2E;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .highlight strong { color: #01A972; }
+
+  .field-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .field {
+    flex: 1;
+    min-width: 220px;
+  }
+  .field label {
+    display: block;
+    color: #003F2E;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .field input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1.5px solid #D2FBDF;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'Nunito', Arial, sans-serif;
+    font-size: 15px;
+    color: #003F2E;
+    background: #ECFDF3;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field input[type="text"]:focus {
+    border-color: #01A972;
+  }
+
+  .question {
+    background: #ECFDF3;
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+  }
+  .question p.qtitle {
+    color: #003F2E;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 16px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .option:hover {
+    background: rgba(1,169,114,0.08);
+  }
+  .option input {
+    margin-top: 3px;
+    accent-color: #01A972;
+    flex-shrink: 0;
+  }
+  .option span {
+    color: #00593E;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .option.correct-answer {
+    background: rgba(1,169,114,0.14);
+  }
+  .option.correct-answer span {
+    color: #00593E;
+    font-weight: 700;
+  }
+  .option.wrong-pick {
+    background: rgba(214,80,80,0.10);
+  }
+  .icon-fb {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+  }
+
+  #submitBtn, #retryBtn, #topBtn {
+    display: inline-block;
+    background: #01A972;
+    color: #FFFFFF;
+    font-family: 'Nunito', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #submitBtn:hover, #retryBtn:hover, #topBtn:hover {
+    background: #00593E;
+  }
+  #submitBtn:disabled {
+    background: #B7D9CB;
+    cursor: not-allowed;
+  }
+  .attempts-left {
+    color: #D2FBDF;
+    font-size: 13px;
+    margin: 0 0 20px;
+  }
+  .blocked-box {
+    display: none;
+    background: rgba(214,80,80,0.12);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .warn {
+    color: #B94A3A;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  #resultBox {
+    display: none;
+    text-align: center;
+    background: #003F2E;
+    border-radius: 18px;
+    padding: 36px 28px;
+    margin-top: 8px;
+  }
+  #resultBox .score {
+    font-size: 40px;
+    font-weight: 800;
+    color: #B6FE80;
+    margin: 0 0 6px;
+  }
+  #resultBox .msg {
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 560px) {
+    #stage { padding: 32px 20px 60px; }
+    .field-row { flex-direction: column; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:60px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+
+  <div id="content">
+
+    <p class="intro">Chegou a hora de colocar o conteúdo à prova! Responda as 6 perguntas abaixo sobre a NR17 - Ergonomia.</p>
+    <div class="highlight">Você precisa acertar pelo menos <strong>75% das perguntas (5 de 6)</strong> para ser aprovado e receber seu certificado. Se não passar de primeira, pode tentar novamente — o limite é de <strong>3 tentativas</strong>.</div>
+
+    <form id="quizForm" novalidate>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="nomeInput">Nome</label>
+          <input type="text" id="nomeInput" required>
+        </div>
+        <div class="field">
+          <label for="cargoInput">Cargo</label>
+          <input type="text" id="cargoInput" required>
+        </div>
+      </div>
+
+      <div class="question" data-qid="q1">
+        <p class="qtitle">1. Qual o significado de LER e DORT?</p>
+        <label class="option"><input type="radio" name="q1" value="Lesões por Esforços Repetitivos e Distúrbios Osteomusculares Relacionadas ao Trabalho" data-correct="true"><span>Lesões por Esforços Repetitivos e Distúrbios Osteomusculares Relacionadas ao Trabalho</span></label>
+        <label class="option"><input type="radio" name="q1" value="Lesão Esquelética Repetitiva e Distúrbios Musculares Relacionadas a Atividade"><span>Lesão Esquelética Repetitiva e Distúrbios Musculares Relacionadas a Atividade</span></label>
+        <label class="option"><input type="radio" name="q1" value="Lesão Esquemática Repetitiva e Distúrbios Osteomusculares Não Relacionadas ao Trabalho"><span>Lesão Esquemática Repetitiva e Distúrbios Osteomusculares Não Relacionadas ao Trabalho</span></label>
+      </div>
+
+      <div class="question" data-qid="q2">
+        <p class="qtitle">2. Quais os fatores de risco que contribuem para a ocorrência dessas doenças?</p>
+        <label class="option"><input type="radio" name="q2" value="Postura correta, pausas pré definidas, ginástica laboral"><span>Postura correta, pausas pré definidas, ginástica laboral</span></label>
+        <label class="option"><input type="radio" name="q2" value="Repetitividade de movimentos, posturas inadequadas, esforço físico intenso" data-correct="true"><span>Repetitividade de movimentos, posturas inadequadas, esforço físico intenso</span></label>
+        <label class="option"><input type="radio" name="q2" value="Sem pressão mecânica e fatores psicossociais adequados"><span>Sem pressão mecânica e fatores psicossociais adequados</span></label>
+      </div>
+
+      <div class="question" data-qid="q3">
+        <p class="qtitle">3. Quais os sintomas apresentados para diagnóstico da doença?</p>
+        <label class="option"><input type="radio" name="q3" value="Fraqueza, inchaço, vermelhidão, calor ou frio, formigamento e sensação de agulhadas" data-correct="true"><span>Fraqueza, inchaço, vermelhidão, calor ou frio, formigamento e sensação de agulhadas</span></label>
+        <label class="option"><input type="radio" name="q3" value="Cansaço, sudorese e tonturas"><span>Cansaço, sudorese e tonturas</span></label>
+        <label class="option"><input type="radio" name="q3" value="Diarreia, fraqueza e formigamento"><span>Diarreia, fraqueza e formigamento</span></label>
+      </div>
+
+      <div class="question" data-qid="q4">
+        <p class="qtitle">4. Quais orientações o funcionário deve receber para prevenir o agravo da doença?</p>
+        <label class="option"><input type="radio" name="q4" value="Beber muita água durante as atividades"><span>Beber muita água durante as atividades</span></label>
+        <label class="option"><input type="radio" name="q4" value="Realizar pausas desregradas"><span>Realizar pausas desregradas</span></label>
+        <label class="option"><input type="radio" name="q4" value="Ginástica laboral, pausas pré definidas" data-correct="true"><span>Ginástica laboral, pausas pré definidas</span></label>
+      </div>
+
+      <div class="question" data-qid="q5">
+        <p class="qtitle">5. Como deve ser o tratamento para prevenção de doenças inflamatórias causadas por esforços repetitivos?</p>
+        <label class="option"><input type="radio" name="q5" value="Melhorar a funcionalidade dos membros atingidos e proteger as articulações de grandes esforços" data-correct="true"><span>Melhorar a funcionalidade dos membros atingidos e proteger as articulações de grandes esforços</span></label>
+        <label class="option"><input type="radio" name="q5" value="Realizar grandes esforços e evitar tratamentos com acupuntura"><span>Realizar grandes esforços e evitar tratamentos com acupuntura</span></label>
+        <label class="option"><input type="radio" name="q5" value="Não fazer uso de anti-inflamatório e relaxante muscular (prescrito pelo médico)"><span>Não fazer uso de anti-inflamatório e relaxante muscular (prescrito pelo médico)</span></label>
+      </div>
+
+      <div class="question" data-qid="q6">
+        <p class="qtitle">6. No seu ponto de vista de que forma a empresa pode contribuir para o não adoecimento referente a exposição ergonômica do trabalhador?</p>
+        <label class="option"><input type="radio" name="q6" value="Adequar equipamentos ergonômicos e aplicar treinamentos sobre ergonomia" data-correct="true"><span>Adequar equipamentos ergonômicos e aplicar treinamentos sobre ergonomia</span></label>
+        <label class="option"><input type="radio" name="q6" value="Aguardar a doença desenvolver em um número maior de colaboradores para verificar a necessidade de investimento"><span>Aguardar a doença desenvolver em um número maior de colaboradores para verificar a necessidade de investimento</span></label>
+        <label class="option"><input type="radio" name="q6" value="Verificar onde é o maior risco e regularizar somente um dos locais com exposição"><span>Verificar onde é o maior risco e regularizar somente um dos locais com exposição</span></label>
+      </div>
+
+      <p class="warn" id="warnMsg">Preencha seu nome, cargo e responda todas as perguntas antes de enviar.</p>
+
+      <button type="submit" id="submitBtn">Enviar respostas</button>
+    </form>
+
+    <div id="resultBox">
+      <p class="score" id="scoreText"></p>
+      <p class="attempts-left" id="attemptsLeftText"></p>
+      <p class="msg" id="resultMsg"></p>
+      <button type="button" id="retryBtn">Tentar novamente</button>
+      <div class="blocked-box" id="blockedBox">Você atingiu o limite de 3 tentativas. Procure o RH para orientações sobre como prosseguir.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Envio silencioso pro Google Forms já existente -->
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+<form id="gformSubmit" action="https://docs.google.com/forms/d/e/1FAIpQLSeMMbYfPykJo31b6K1kG2PSdDLstqvzBFhkGmNuVOyK8X7Igw/formResponse" method="POST" target="hidden_iframe" style="display:none;">
+  <input type="text" name="entry.1517979847" id="gf_nome">
+  <input type="text" name="entry.341192060" id="gf_cargo">
+  <input type="text" name="entry.1136365442" id="gf_q1">
+  <input type="text" name="entry.1943684892" id="gf_q2">
+  <input type="text" name="entry.2009548464" id="gf_q3">
+  <input type="text" name="entry.1509414578" id="gf_q4">
+  <input type="text" name="entry.2056687570" id="gf_q5">
+  <input type="text" name="entry.180810296" id="gf_q6">
+</form>
+
+<script>
+  var form = document.getElementById('quizForm');
+  var resultBox = document.getElementById('resultBox');
+  var scoreText = document.getElementById('scoreText');
+  var resultMsg = document.getElementById('resultMsg');
+  var warnMsg = document.getElementById('warnMsg');
+  var submitBtn = document.getElementById('submitBtn');
+  var retryBtn = document.getElementById('retryBtn');
+  var blockedBox = document.getElementById('blockedBox');
+  var attemptsLeftText = document.getElementById('attemptsLeftText');
+  var questionIds = ['q1','q2','q3','q4','q5','q6'];
+  var MAX_ATTEMPTS = 3;
+  var attemptsUsed = 0;
+
+  var checkIcon = '<svg class="icon-fb" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#01A972"/><path d="M7 12.5l3 3 7-7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var xIcon = '<svg class="icon-fb" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#D65050"/><path d="M8 8l8 8M16 8l-8 8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>';
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var nome = document.getElementById('nomeInput').value.trim();
+    var cargo = document.getElementById('cargoInput').value.trim();
+
+    var answers = {};
+    var allAnswered = true;
+    questionIds.forEach(function (q) {
+      var picked = form.querySelector('input[name="' + q + '"]:checked');
+      answers[q] = picked ? picked : null;
+      if (!picked) allAnswered = false;
+    });
+
+    if (!nome || !cargo || !allAnswered) {
+      warnMsg.style.display = 'block';
+      return;
+    }
+    warnMsg.style.display = 'none';
+
+    var correctCount = 0;
+
+    questionIds.forEach(function (q) {
+      var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
+      var options = questionDiv.querySelectorAll('.option');
+      var pickedInput = answers[q];
+      var isCorrect = pickedInput.getAttribute('data-correct') === 'true';
+      if (isCorrect) correctCount++;
+
+      options.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        var existingIcon = opt.querySelector('.icon-fb');
+        if (existingIcon) existingIcon.remove();
+
+        if (input.getAttribute('data-correct') === 'true') {
+          opt.classList.add('correct-answer');
+          opt.insertAdjacentHTML('afterbegin', checkIcon);
+        } else {
+          opt.classList.remove('correct-answer');
+        }
+        if (input === pickedInput && !isCorrect) {
+          opt.classList.add('wrong-pick');
+          opt.insertAdjacentHTML('afterbegin', xIcon);
+        } else if (input !== pickedInput) {
+          opt.classList.remove('wrong-pick');
+        }
+        input.disabled = true;
+      });
+    });
+
+    attemptsUsed++;
+    var passed = correctCount >= 5; // 75% de 6 = 4.5, arredondado pra 5
+    var pct = Math.round((correctCount / 6) * 100);
+    var attemptsRemaining = MAX_ATTEMPTS - attemptsUsed;
+
+    scoreText.textContent = correctCount + ' de 6 (' + pct + '%)';
+
+    if (passed) {
+      resultMsg.textContent = 'Você foi aprovado! Seu certificado será emitido em breve.';
+      retryBtn.style.display = 'none';
+      blockedBox.style.display = 'none';
+      attemptsLeftText.textContent = '';
+    } else if (attemptsRemaining > 0) {
+      resultMsg.textContent = 'Você ainda não atingiu os 75% necessários. Releia o material acima e tente novamente.';
+      attemptsLeftText.textContent = attemptsRemaining === 1
+        ? 'Você tem 1 tentativa restante.'
+        : 'Você tem ' + attemptsRemaining + ' tentativas restantes.';
+      retryBtn.style.display = 'inline-block';
+      blockedBox.style.display = 'none';
+    } else {
+      resultMsg.textContent = 'Você não atingiu os 75% necessários nas 3 tentativas disponíveis.';
+      attemptsLeftText.textContent = '';
+      retryBtn.style.display = 'none';
+      blockedBox.style.display = 'block';
+    }
+
+    resultBox.style.display = 'block';
+    submitBtn.style.display = 'none';
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Envio silencioso pro Google Forms
+    document.getElementById('gf_nome').value = nome;
+    document.getElementById('gf_cargo').value = cargo;
+    questionIds.forEach(function (q) {
+      document.getElementById('gf_' + q).value = answers[q].value;
+    });
+    document.getElementById('gformSubmit').submit();
+  });
+
+  retryBtn.addEventListener('click', function () {
+    questionIds.forEach(function (q) {
+      var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
+      questionDiv.querySelectorAll('input[type="radio"]').forEach(function (input) {
+        input.checked = false;
+        input.disabled = false;
+      });
+      questionDiv.querySelectorAll('.option').forEach(function (opt) {
+        opt.classList.remove('correct-answer', 'wrong-pick');
+        var icon = opt.querySelector('.icon-fb');
+        if (icon) icon.remove();
+      });
+    });
+    resultBox.style.display = 'none';
+    submitBtn.style.display = 'inline-block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
