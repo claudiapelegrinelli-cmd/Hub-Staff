@@ -10,9 +10,22 @@
   html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
     background: transparent;
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #page {
+    box-sizing: border-box;
+    padding: 24px 20px 32px;
+  }
+  #intro {
+    max-width: 900px;
+    margin: 0 auto 28px;
+  }
+  #intro p {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
   }
   #frame {
     box-sizing: border-box;
@@ -20,10 +33,8 @@
     border-radius: 24px;
     padding: 6%;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
   }
   #wrapper {
     width: 100%;
@@ -82,9 +93,15 @@
 </head>
 <body>
 
-<div id="frame">
-  <div id="wrapper">
-    <div id="dots"></div>
+<div id="page">
+  <div id="intro">
+    <p>Antes de começar suas atividades na WeClever, complete os treinamentos abaixo. Eles garantem que você tenha a base necessária para atuar com segurança e alinhado às nossas práticas.</p>
+  </div>
+
+  <div id="frame">
+    <div id="wrapper">
+      <div id="dots"></div>
+    </div>
   </div>
 </div>
 
@@ -128,6 +145,8 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
+  el.target = '_blank';
+  el.rel = 'noopener';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
   el.style.left = pct(d.x - d.r, CANVAS_W);
