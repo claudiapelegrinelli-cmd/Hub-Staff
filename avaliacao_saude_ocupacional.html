@@ -347,39 +347,54 @@
     warnMsg.style.display = 'none';
 
     var correctCount = 0;
-
     questionIds.forEach(function (q) {
-      var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
-      var options = questionDiv.querySelectorAll('.option');
       var pickedInput = answers[q];
-      var isCorrect = pickedInput.getAttribute('data-correct') === 'true';
-      if (isCorrect) correctCount++;
-
-      options.forEach(function (opt) {
-        var input = opt.querySelector('input');
-        var existingIcon = opt.querySelector('.icon-fb');
-        if (existingIcon) existingIcon.remove();
-
-        if (input.getAttribute('data-correct') === 'true') {
-          opt.classList.add('correct-answer');
-          opt.insertAdjacentHTML('afterbegin', checkIcon);
-        } else {
-          opt.classList.remove('correct-answer');
-        }
-        if (input === pickedInput && !isCorrect) {
-          opt.classList.add('wrong-pick');
-          opt.insertAdjacentHTML('afterbegin', xIcon);
-        } else if (input !== pickedInput) {
-          opt.classList.remove('wrong-pick');
-        }
-        input.disabled = true;
-      });
+      if (pickedInput.getAttribute('data-correct') === 'true') correctCount++;
     });
 
     attemptsUsed++;
     var passed = correctCount >= 5; // 75% de 6 = 4.5, arredondado pra 5
     var pct = Math.round((correctCount / 6) * 100);
     var attemptsRemaining = MAX_ATTEMPTS - attemptsUsed;
+    var revealCorrect = passed || attemptsRemaining <= 0;
+
+    questionIds.forEach(function (q) {
+      var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
+      var options = questionDiv.querySelectorAll('.option');
+      var pickedInput = answers[q];
+      var isCorrect = pickedInput.getAttribute('data-correct') === 'true';
+
+      options.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        var existingIcon = opt.querySelector('.icon-fb');
+        if (existingIcon) existingIcon.remove();
+        opt.classList.remove('correct-answer', 'wrong-pick');
+
+        if (revealCorrect) {
+          // Última tentativa ou aprovado: mostra qual era a certa
+          if (input.getAttribute('data-correct') === 'true') {
+            opt.classList.add('correct-answer');
+            opt.insertAdjacentHTML('afterbegin', checkIcon);
+          }
+          if (input === pickedInput && !isCorrect) {
+            opt.classList.add('wrong-pick');
+            opt.insertAdjacentHTML('afterbegin', xIcon);
+          }
+        } else {
+          // Ainda há tentativas: só marca a própria escolha, sem entregar a certa
+          if (input === pickedInput) {
+            if (isCorrect) {
+              opt.classList.add('correct-answer');
+              opt.insertAdjacentHTML('afterbegin', checkIcon);
+            } else {
+              opt.classList.add('wrong-pick');
+              opt.insertAdjacentHTML('afterbegin', xIcon);
+            }
+          }
+        }
+        input.disabled = true;
+      });
+    });
 
     scoreText.textContent = correctCount + ' de 6 (' + pct + '%)';
 
@@ -389,7 +404,7 @@
       blockedBox.style.display = 'none';
       attemptsLeftText.textContent = '';
     } else if (attemptsRemaining > 0) {
-      resultMsg.textContent = 'Você ainda não atingiu os 75% necessários. Releia o material acima e tente novamente.';
+      resultMsg.textContent = 'Você ainda não atingiu os 75% necessários. Releia o material acima e tente novamente — as respostas certas só aparecem na última tentativa.';
       attemptsLeftText.textContent = attemptsRemaining === 1
         ? 'Você tem 1 tentativa restante.'
         : 'Você tem ' + attemptsRemaining + ' tentativas restantes.';
