@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>WeClever - Nossos Rituais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  #content {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h2 {
+    color: #003F2E;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 14px;
+  }
+  p {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 24px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 20px;
+    font-size: 14px;
+  }
+  th {
+    background: #01A972;
+    color: #EAF6F1;
+    text-align: left;
+    padding: 10px 12px;
+  }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0,89,62,0.15);
+    color: #003F2E;
+    vertical-align: top;
+  }
+  td.ritual-nome {
+    font-weight: 800;
+  }
+  td.ritual-frequencia {
+    color: #01A972;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  td.ritual-descricao {
+    color: #00593E;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:60px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+
+  <div id="content">
+
+    <h2>Nossos Rituais</h2>
+    <p>Esses são os encontros que mantêm o time alinhado, informado e conectado — cada um com seu propósito e seu ritmo.</p>
+
+    <table>
+      <tr>
+        <th>Ritual</th>
+        <th>Frequência</th>
+        <th>Descrição</th>
+      </tr>
+      <tr>
+        <td class="ritual-nome">Weekly</td>
+        <td class="ritual-frequencia">Toda segunda</td>
+        <td class="ritual-descricao">Alinhamento semanal do time.</td>
+      </tr>
+      <tr>
+        <td class="ritual-nome">Forecast</td>
+        <td class="ritual-frequencia">Toda terça</td>
+        <td class="ritual-descricao">Apresentação de receita e margem, com contexto operacional.</td>
+      </tr>
+      <tr>
+        <td class="ritual-nome">RMR</td>
+        <td class="ritual-frequencia">Mensal</td>
+        <td class="ritual-descricao">Reunião Mensal de Resultados — fechamento do mês.</td>
+      </tr>
+      <tr>
+        <td class="ritual-nome">1:1</td>
+        <td class="ritual-frequencia">Quinzenal</td>
+        <td class="ritual-descricao">Com a liderança direta.</td>
+      </tr>
+      <tr>
+        <td class="ritual-nome" style="white-space:nowrap;">Encontro presencial</td>
+        <td class="ritual-frequencia">A cada quadrimestre</td>
+        <td class="ritual-descricao">Time todo, presencial.</td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+
+</body>
+</html>
