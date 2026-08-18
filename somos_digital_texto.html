@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>WeClever - Somos Digital</title>
+<title>WeClever - Somos Digital (Opção Contraste)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   html, body {
     margin: 0;
@@ -25,47 +25,175 @@
     pointer-events: none;
     animation: floaty ease-in-out infinite;
   }
-  #content {
-    position: relative;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  p {
-    color: #00593E;
-    font-size: 16px;
-    line-height: 1.8;
-    margin: 0 0 20px;
-  }
   @keyframes floaty {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-16px); }
+  }
+  #content {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  p.intro {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 36px;
+  }
+  .block {
+    margin-bottom: 44px;
+  }
+  .contrast {
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .contrast > div {
+    flex: 1;
+    padding: 20px 22px;
+    box-sizing: border-box;
+  }
+  .not-this {
+    background: #F1F1F1;
+  }
+  .not-this .tag {
+    color: #9AA39D;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0 0 8px;
+  }
+  .not-this p {
+    color: #7A827D;
+    text-decoration: line-through;
+    text-decoration-color: #B8BFB9;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0;
+  }
+  .this {
+    background: #003F2E;
+  }
+  .this .tag {
+    color: #B6FE80;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0 0 8px;
+  }
+  .this p {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0;
+  }
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #01A972;
+    flex: 0 0 40px;
+  }
+  .arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+  p.body {
+    color: #00593E;
+    font-size: 15.5px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    #stage { padding: 32px 20px; }
+    .contrast { flex-direction: column; }
+    .arrow { flex: 0 0 32px; transform: rotate(90deg); }
   }
 </style>
 </head>
 <body>
 
 <div id="stage">
-  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.45; top:-20px; right:60px; animation-duration:5s;"></div>
-  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.45; top:120px; right:200px; animation-duration:4s; animation-delay:0.6s;"></div>
-  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.45; top:60px; left:40px; animation-duration:4.5s; animation-delay:1s;"></div>
-  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.45; bottom:40px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
-  <div class="deco" style="width:35px; height:35px; background:#01A972; opacity:0.45; bottom:-10px; right:120px; animation-duration:4s; animation-delay:1.4s;"></div>
-  <div class="deco" style="width:50px; height:50px; background:#66D681; opacity:0.45; top:20px; left:180px; animation-duration:4.8s; animation-delay:0.8s;"></div>
-  <div class="deco" style="width:25px; height:25px; background:#D2FBDF; opacity:0.5; top:200px; right:30px; animation-duration:3.8s; animation-delay:1.2s;"></div>
-  <div class="deco" style="width:65px; height:65px; background:#00593E; opacity:0.5; bottom:80px; right:-15px; animation-duration:5.2s; animation-delay:0.4s;"></div>
-  <div class="deco" style="width:20px; height:20px; background:#B6FE80; opacity:0.45; top:10px; left:-5px; animation-duration:4.2s; animation-delay:1.6s;"></div>
-  <div class="deco" style="width:40px; height:40px; background:#66D681; opacity:0.45; bottom:10px; left:150px; animation-duration:5.6s; animation-delay:0.2s;"></div>
-  <div class="deco" style="width:55px; height:55px; background:#D2FBDF; opacity:0.45; top:250px; left:-20px; animation-duration:4.6s; animation-delay:1s;"></div>
-  <div class="deco" style="width:30px; height:30px; background:#00593E; opacity:0.45; bottom:150px; right:60px; animation-duration:3.6s; animation-delay:0.7s;"></div>
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:200px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+  <div class="deco" style="width:35px; height:35px; background:#66D681; opacity:0.4; bottom:60px; right:100px; animation-duration:4s; animation-delay:1.4s;"></div>
 
   <div id="content">
-    <p>Ser parte de uma empresa remota não significa trabalhar de forma isolada ou distante das pessoas. A tecnologia não substitui a interação humana — ela é o que nos permite mantê-la viva, mesmo à distância.</p>
 
-    <p>A tecnologia nos permite manter contato próximo com nossas equipes, seja de forma assíncrona por meio de texto ou em tempo real com conversas em alta qualidade por vídeo. As equipes devem colaborar de perto, comunicar-se frequentemente, construir relacionamentos virtualmente e sentir-se como membros valiosos de uma equipe maior.</p>
+    <p class="intro">Trabalhar numa empresa remota carrega algumas ideias feitas que vale desconstruir — a começar por estas:</p>
 
-    <p>Trabalhar remotamente também não significa que você esteja restrito a trabalhar em casa. Você é livre para trabalhar onde quiser: em casa com a família, em uma cafeteria, em um espaço de coworking. Você pode ter frequentes videochamadas ou sessões de trabalho virtual com colegas ao longo do dia, e até mesmo se encontrar pessoalmente com colegas que estejam por perto.</p>
+    <div class="block">
+      <div class="contrast">
+        <div class="not-this">
+          <p class="tag">MITO</p>
+          <p>Trabalho isolado e distante das pessoas</p>
+        </div>
+        <div class="arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#003F2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="this">
+          <p class="tag">REALIDADE</p>
+          <p>Conexão humana viva, mesmo à distância</p>
+        </div>
+      </div>
+      <p class="body">Ser parte de uma empresa remota não significa trabalhar de forma isolada ou distante das pessoas. A tecnologia não substitui a interação humana. Ela nos permite manter essa conexão viva, mesmo à distância.</p>
+    </div>
 
-    <p>O fundamental é lembrar que o ambiente virtual é o nosso escritório — e por isso precisamos garantir as condições necessárias para executar nossas tarefas com a mesma qualidade que teríamos presencialmente.</p>
+    <div class="block">
+      <div class="contrast">
+        <div class="not-this">
+          <p class="tag">MITO</p>
+          <p>Trocar mensagens por obrigação</p>
+        </div>
+        <div class="arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#003F2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="this">
+          <p class="tag">REALIDADE</p>
+          <p>Colaborar de perto e construir relação</p>
+        </div>
+      </div>
+      <p class="body">A tecnologia nos permite manter um contato próximo com nossas equipes, seja por meio de textos e outras formas de comunicação, ou em tempo real, por meio de conversas em vídeo. As equipes devem colaborar de perto, comunicar-se com frequência, construir relacionamentos virtualmente e fazer parte de uma equipe maior, na qual cada pessoa se sinta valorizada.</p>
+    </div>
+
+    <div class="block">
+      <div class="contrast">
+        <div class="not-this">
+          <p class="tag">MITO</p>
+          <p>Estar preso a trabalhar em casa</p>
+        </div>
+        <div class="arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#003F2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="this">
+          <p class="tag">REALIDADE</p>
+          <p>Liberdade pra trabalhar de onde quiser</p>
+        </div>
+      </div>
+      <p class="body">Trabalhar remotamente também não significa estar restrito a trabalhar em casa. Você é livre para trabalhar onde quiser: em casa com a família, em uma cafeteria ou em um espaço de coworking. Você pode participar de videochamadas frequentes ou de momentos de trabalho com colegas ao longo do dia e até mesmo se encontrar pessoalmente com colegas que estejam por perto.</p>
+    </div>
+
+    <div class="block">
+      <div class="contrast">
+        <div class="not-this">
+          <p class="tag">MITO</p>
+          <p>Um lugar físico com endereço fixo</p>
+        </div>
+        <div class="arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#003F2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="this">
+          <p class="tag">REALIDADE</p>
+          <p>O ambiente virtual é o nosso escritório</p>
+        </div>
+      </div>
+      <p class="body">O fundamental é lembrar que o ambiente virtual é o nosso escritório. Por isso, precisamos garantir as condições necessárias para executar nossas tarefas com a mesma qualidade que teríamos presencialmente.</p>
+    </div>
+
   </div>
 </div>
 
