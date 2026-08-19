@@ -341,6 +341,11 @@
     });
 
     if (!nome || !cargo || !allAnswered) {
+      var faltando = [];
+      if (!nome) faltando.push('nome');
+      if (!cargo) faltando.push('cargo');
+      if (!allAnswered) faltando.push('resposta de todas as perguntas');
+      warnMsg.textContent = 'Falta preencher: ' + faltando.join(', ') + '.';
       warnMsg.style.display = 'block';
       return;
     }
@@ -434,7 +439,6 @@
     questionIds.forEach(function (q) {
       var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
       questionDiv.querySelectorAll('input[type="radio"]').forEach(function (input) {
-        input.checked = false;
         input.disabled = false;
       });
       questionDiv.querySelectorAll('.option').forEach(function (opt) {
