@@ -54,36 +54,17 @@
     justify-content: center;
     text-align: center;
     line-height: 1.15;
+    white-space: pre-line;
     animation: floaty 3s ease-in-out infinite;
     transition: transform 0.15s;
   }
   .dot.clickable {
-    cursor: pointer;
     font-size: clamp(9px, 2.4vw, 14px);
     font-weight: 800;
     padding: 4%;
-    text-decoration: none;
-    white-space: pre-line;
     box-sizing: border-box;
-  }
-  .dot.clickable:hover {
-    transform: scale(1.08);
-  }
-  .dot.clickable {
     background: #01A972 !important;
     color: #B6FE80 !important;
-  }
-  .dot.clickable:visited {
-    background: #B6FE80 !important;
-    color: #003F2E !important;
-  }
-  .dot.clickable .check {
-    display: none;
-    font-size: 1.4em;
-    margin-bottom: 4px;
-  }
-  .dot.clickable:visited .check {
-    display: block;
   }
   @keyframes floaty {
     0%, 100% { margin-top: 0px; }
@@ -107,15 +88,14 @@
 
 <script>
 /* ==========================================================
-   INSTRUÇÕES:
-   Troque cada "url: '#'" abaixo pelo link real da página
-   correspondente no seu Google Sites antes de publicar.
+   Bolinhas puramente ilustrativas — a navegação real é feita
+   pelo índice/menu do Google Sites, não por estas bolinhas.
    ========================================================== */
 
 const dots = [
-  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance',          url:'compliance.html' },
-  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho', url:'relacoes_trabalho.html' },
-  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional',   url:'saude_ocupacional.html' },
+  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance' },
+  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho' },
+  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional' },
 ];
 
 const decorative = [];
@@ -143,10 +123,7 @@ decorative.forEach((d) => {
 });
 
 dots.forEach((d) => {
-  const el = document.createElement('a');
-  el.href = d.url;
-  el.target = '_top';
-  el.rel = 'noopener';
+  const el = document.createElement('div');
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
   el.style.left = pct(d.x - d.r, CANVAS_W);
@@ -155,7 +132,7 @@ dots.forEach((d) => {
   el.style.height = pct(d.r*2, CANVAS_H);
   el.style.animationDelay = delay + 's';
   delay += 0.15;
-  el.innerHTML = '<span class="check">✓</span>' + d.topic.replace(/\n/g, '<br>');
+  el.innerHTML = d.topic.replace(/\n/g, '<br>');
   container.appendChild(el);
 });
 </script>
