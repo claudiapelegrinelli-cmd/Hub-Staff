@@ -113,9 +113,9 @@
    ========================================================== */
 
 const dots = [
-  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1PBQ8hIkZLHsQyCxX2zt1M2K9svFvtvLo/edit' },
-  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1z0dnXEOuBcDA9Wuilbv3piFlr4nsR7Kh/edit' },
-  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional',   url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1wFUxDsdH-tfd0FJVtVhNqNKFL3qZ3qcE/edit' },
+  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance',          url:'compliance.html' },
+  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho', url:'relacoes_trabalho.html' },
+  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional',   url:'saude_ocupacional.html' },
 ];
 
 const decorative = [];
@@ -145,7 +145,7 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
-  el.target = '_blank';
+  el.target = '_top';
   el.rel = 'noopener';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);

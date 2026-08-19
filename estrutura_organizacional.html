@@ -94,8 +94,8 @@
    ========================================================== */
 
 const dots = [
-  { x:220, y:130, r:110, color:'#003F2E', topic:'Nossos\nValores', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1M5mawxaxsCW4vjLO0OeQcWwdYeYCRHxW/edit' },
-  { x:480, y:130, r:110, color:'#003F2E', topic:'Nossos\nRituais', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1aEIaN3_kXe1VF2fEWubCmLTIziJLZvMm/edit' },
+  { x:220, y:130, r:110, color:'#003F2E', topic:'Nossos\nValores', url:'nossos_valores.html' },
+  { x:480, y:130, r:110, color:'#003F2E', topic:'Nossos\nRituais', url:'nossos_rituais.html' },
 ];
 
 const decorative = [];
@@ -131,7 +131,7 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
-  el.target = '_blank';
+  el.target = '_top';
   el.rel = 'noopener';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);

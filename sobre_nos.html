@@ -79,10 +79,10 @@
    ========================================================== */
 
 const dots = [
-  { x:150, y:130, r:110, color:'#003F2E', topic:'Somos\nDigital',        url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1mOeT-Z1y8yscaOSyoF3dmsnECfjSGew1/edit' },
-  { x:410, y:130, r:110, color:'#003F2E', topic:'Identidade\nda Marca', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1e0ogYEdw3edX-UvlXRw7ObZB_-PVjyUf/edit' },
-  { x:670, y:130, r:110, color:'#003F2E', topic:'Como nos\nComunicamos', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1GQaA5no4xaykrW9ooQVODr3VJ_lRsW72/edit' },
-  { x:930, y:130, r:110, color:'#003F2E', topic:'Nosso\nProduto',        url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1jEsZ4RUdf9Yfo_ToByRsCDoq63Ar8bTY/edit' },
+  { x:150, y:130, r:110, color:'#003F2E', topic:'Somos\nDigital',        url:'somos_digital_texto.html' },
+  { x:410, y:130, r:110, color:'#003F2E', topic:'Identidade\nda Marca', url:'https://sites.google.com/weclever.co/weclever-hub-staff/identidade-da-marca' },
+  { x:670, y:130, r:110, color:'#003F2E', topic:'Como nos\nComunicamos', url:'https://sites.google.com/weclever.co/weclever-hub-staff/como-nos-comunicamos' },
+  { x:930, y:130, r:110, color:'#003F2E', topic:'Nosso\nProduto',        url:'https://sites.google.com/weclever.co/weclever-hub-staff/nosso-produto' },
 ];
 
 const decorative = [];
@@ -118,6 +118,7 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
+  el.target = '_top';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
   el.style.left = pct(d.x - d.r, CANVAS_W);

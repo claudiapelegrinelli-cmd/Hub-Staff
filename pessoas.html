@@ -94,9 +94,9 @@
    ========================================================== */
 
 const dots = [
-  { x:150, y:130, r:110, color:'#003F2E', topic:'Benefícios',  url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1FV9JOylFlfyOjtsz3Q-VzqQLwCI10gcf/edit' },
-  { x:410, y:130, r:110, color:'#003F2E', topic:'Férias',      url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1K7Qsfmb3at3_UbITuQFGJIQ3GoslwuLQ/edit' },
-  { x:670, y:130, r:110, color:'#003F2E', topic:'Treinamentos', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1b0KKgmWNXyJHqi8tI1AdYZxo1zZS5_VX/edit' },
+  { x:150, y:130, r:110, color:'#003F2E', topic:'Benefícios',  url:'beneficios.html' },
+  { x:410, y:130, r:110, color:'#003F2E', topic:'Férias',      url:'ferias.html' },
+  { x:670, y:130, r:110, color:'#003F2E', topic:'Treinamentos', url:'treinamentos.html' },
 ];
 
 const decorative = [];
@@ -132,6 +132,7 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
+  el.target = '_top';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
   el.style.left = pct(d.x - d.r, CANVAS_W);

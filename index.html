@@ -66,11 +66,11 @@
    ========================================================== */
 
 const dots = [
-  { x:208.3, y:273.4, r:65.5, color:'#B6FE80', topic:'Sobre Nós',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/18e35suwTon3NKNZAHUoz7AkDXHQ90hlf/edit' },
-  { x:399.7, y:273.4, r:65.7, color:'#B6FE80', topic:'Estrutura',              url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1gyee1MjczRLJNfmNdDPTizVZYiLAiMiD/edit' },
-  { x:591.1, y:273.4, r:65.7, color:'#B6FE80', topic:'Políticas e Compliance', url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/14D-gnr6EIeGVN-a5QBiET5WVNkaQdkxZ/edit' },
-  { x:304.0, y:463.2, r:65.5, color:'#B6FE80', topic:'Pessoas',                url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1hKc0KxPEdmBR1AxcR3SuPccs5jC4Ak61/edit' },
-  { x:495.4, y:463.2, r:65.7, color:'#B6FE80', topic:'Redes Sociais',          url:'https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1BFUI1XI5KVolZHxRhpVwIDcBaPZRp_eL/edit' },
+  { x:208.3, y:273.4, r:65.5, color:'#B6FE80', topic:'Sobre Nós',              url:'sobre_nos.html' },
+  { x:399.7, y:273.4, r:65.7, color:'#B6FE80', topic:'Estrutura',              url:'estrutura_organizacional.html' },
+  { x:591.1, y:273.4, r:65.7, color:'#B6FE80', topic:'Políticas e Compliance', url:'politicas_e_compliance.html' },
+  { x:304.0, y:463.2, r:65.5, color:'#B6FE80', topic:'Pessoas',                url:'pessoas.html' },
+  { x:495.4, y:463.2, r:65.7, color:'#B6FE80', topic:'Redes Sociais',          url:'https://sites.google.com/weclever.co/weclever-hub-staff/redes-sociais' },
 ];
 
 const decorative = [
@@ -113,7 +113,7 @@ decorative.forEach((d) => {
 dots.forEach((d) => {
   const el = document.createElement('a');
   el.href = d.url;
-  el.target = '_blank';
+  el.target = '_top';
   el.rel = 'noopener';
   el.className = 'dot clickable';
   el.setAttribute('aria-label', d.topic);
