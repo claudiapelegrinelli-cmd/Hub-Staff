@@ -439,6 +439,7 @@
     questionIds.forEach(function (q) {
       var questionDiv = form.querySelector('.question[data-qid="' + q + '"]');
       questionDiv.querySelectorAll('input[type="radio"]').forEach(function (input) {
+        input.checked = false;
         input.disabled = false;
       });
       questionDiv.querySelectorAll('.option').forEach(function (opt) {
