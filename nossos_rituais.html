@@ -16,13 +16,14 @@
   #stage {
     position: relative;
     overflow: hidden;
-    padding: 48px 40px;
+    padding: 56px 40px 72px;
     box-sizing: border-box;
   }
   .deco {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
+    background: #01A972;
     animation: floaty ease-in-out infinite;
   }
   @keyframes floaty {
@@ -31,97 +32,99 @@
   }
   #content {
     position: relative;
-    max-width: 720px;
+    max-width: 1080px;
     margin: 0 auto;
   }
-  h2 {
-    color: #003F2E;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0 0 14px;
-  }
-  p {
+  .intro {
     color: #00593E;
     font-size: 16px;
     line-height: 1.8;
-    margin: 0 0 24px;
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 48px;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 8px 0 20px;
-    font-size: 14px;
+  .rituais-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
   }
-  th {
-    background: #01A972;
-    color: #EAF6F1;
-    text-align: left;
-    padding: 10px 12px;
+  .ritual-card {
+    background: #ECFDF3;
+    border: 1px solid rgba(0, 89, 62, 0.15);
+    border-radius: 18px;
+    padding: 24px 20px;
+    width: 190px;
+    box-sizing: border-box;
+    text-align: center;
   }
-  td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(0,89,62,0.15);
-    color: #003F2E;
-    vertical-align: top;
-  }
-  td.ritual-nome {
-    font-weight: 800;
-  }
-  td.ritual-frequencia {
+  .ritual-freq {
     color: #01A972;
+    font-size: 13px;
     font-weight: 700;
+    margin-top: 14px;
     white-space: nowrap;
   }
-  td.ritual-descricao {
+  .ritual-nome {
+    color: #003F2E;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .ritual-descricao {
     color: #00593E;
-    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .ritual-card {
+      width: 100%;
+      max-width: 340px;
+    }
   }
 </style>
 </head>
 <body>
 
 <div id="stage">
-  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
-  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
-  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
-  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:60px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+  <div class="deco" style="width:70px; height:70px; opacity:0.15; top:-10px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:40px; height:40px; opacity:0.2; top:120px; left:40px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:26px; height:26px; opacity:0.18; bottom:40px; right:120px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:50px; height:50px; opacity:0.12; bottom:-10px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
 
   <div id="content">
 
-    <p>Esses são os encontros que mantêm o time alinhado, informado e conectado — cada um com seu propósito e seu ritmo.</p>
+    <p class="intro">Esses são os encontros que mantêm o time alinhado, informado e conectado — cada um com seu propósito e seu ritmo.</p>
 
-    <table>
-      <tr>
-        <th>Ritual</th>
-        <th>Frequência</th>
-        <th>Descrição</th>
-      </tr>
-      <tr>
-        <td class="ritual-nome">Weekly</td>
-        <td class="ritual-frequencia">Toda segunda</td>
-        <td class="ritual-descricao">Alinhamento semanal do time.</td>
-      </tr>
-      <tr>
-        <td class="ritual-nome">Forecast</td>
-        <td class="ritual-frequencia">Toda terça</td>
-        <td class="ritual-descricao">Apresentação de receita e margem, com contexto operacional.</td>
-      </tr>
-      <tr>
-        <td class="ritual-nome">RMR</td>
-        <td class="ritual-frequencia">Mensal</td>
-        <td class="ritual-descricao">Reunião Mensal de Resultados — fechamento do mês.</td>
-      </tr>
-      <tr>
-        <td class="ritual-nome">1:1</td>
-        <td class="ritual-frequencia">Quinzenal</td>
-        <td class="ritual-descricao">Com a liderança direta.</td>
-      </tr>
-      <tr>
-        <td class="ritual-nome" style="white-space:nowrap;">Encontro presencial</td>
-        <td class="ritual-frequencia">A cada quadrimestre</td>
-        <td class="ritual-descricao">Time todo, presencial.</td>
-      </tr>
-    </table>
+    <div class="rituais-row">
+      <div class="ritual-card">
+        <div class="ritual-nome">Weekly</div>
+        <div class="ritual-descricao">Alinhamento semanal do time.</div>
+        <div class="ritual-freq">Toda segunda</div>
+      </div>
+      <div class="ritual-card">
+        <div class="ritual-nome">Forecast</div>
+        <div class="ritual-descricao">Apresentação de receita e margem, com contexto operacional.</div>
+        <div class="ritual-freq">Toda terça</div>
+      </div>
+      <div class="ritual-card">
+        <div class="ritual-nome">RMR</div>
+        <div class="ritual-descricao">Reunião Mensal de Resultados — fechamento do mês.</div>
+        <div class="ritual-freq">Mensal</div>
+      </div>
+      <div class="ritual-card">
+        <div class="ritual-nome">1:1</div>
+        <div class="ritual-descricao">Com a liderança direta.</div>
+        <div class="ritual-freq">Quinzenal</div>
+      </div>
+      <div class="ritual-card">
+        <div class="ritual-nome">Encontro presencial</div>
+        <div class="ritual-descricao">Todo o staff.</div>
+        <div class="ritual-freq">A cada quadrimestre</div>
+      </div>
+    </div>
 
   </div>
 </div>
