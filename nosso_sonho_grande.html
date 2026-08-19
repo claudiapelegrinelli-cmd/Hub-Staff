@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nosso Sonho Grande</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .sonho-section {
+    position: relative;
+    overflow: hidden;
+    padding: 64px 48px;
+    text-align: center;
+    background: #ECFDF3;
+    border-radius: 24px;
+    max-width: 820px;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(0, 63, 46, 0.08);
+  }
+
+  /* bolinhas decorativas flutuantes */
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    background: #01A972;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  .deco1 { width: 22px; height: 22px; top: 12%; left: 8%; opacity: 0.5; animation-delay: 0s; }
+  .deco2 { width: 14px; height: 14px; top: 20%; right: 12%; opacity: 0.4; animation-delay: 1.2s; }
+  .deco3 { width: 30px; height: 30px; bottom: 15%; left: 15%; opacity: 0.3; animation-delay: 2.4s; }
+  .deco4 { width: 16px; height: 16px; bottom: 22%; right: 10%; opacity: 0.5; animation-delay: 0.6s; }
+  .deco5 { width: 10px; height: 10px; top: 45%; left: 4%; opacity: 0.4; animation-delay: 1.8s; }
+  .deco6 { width: 12px; height: 12px; top: 50%; right: 5%; opacity: 0.3; animation-delay: 3s; }
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  .sonho-kicker {
+    position: relative;
+    z-index: 1;
+    font-size: 18px;
+    font-weight: 700;
+    color: #00593E;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .sonho-highlight {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 780px;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #003F2E;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .sonho-highlight { font-size: 28px; }
+    .sonho-section { padding: 40px 24px; border-radius: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="sonho-section">
+  <span class="deco deco1"></span>
+  <span class="deco deco2"></span>
+  <span class="deco deco3"></span>
+  <span class="deco deco4"></span>
+  <span class="deco deco5"></span>
+  <span class="deco deco6"></span>
+
+  <div class="sonho-kicker">Nosso sonho grande</div>
+  <h2 class="sonho-highlight">Revelar o valor de toda conversa.</h2>
+</section>
+
+</body>
+</html>
