@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeClever - Benefícios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  }
+  #stage {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px 80px;
+    box-sizing: border-box;
+  }
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floaty ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  #content {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  p {
+    color: #00593E;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 20px;
+  }
+  .highlight {
+    background: #ECFDF3;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 0 0 32px;
+    color: #003F2E;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .highlight strong { color: #01A972; }
+
+  .cta-button {
+    display: inline-block;
+    background: #01A972;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 13px 30px;
+    margin: 4px 0 0;
+    transition: background 0.2s;
+  }
+  .cta-button:hover {
+    background: #00593E;
+  }
+
+  .plan-card {
+    border: 1px solid #ECFDF3;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .plan-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    cursor: pointer;
+    background: #FFFFFF;
+    user-select: none;
+  }
+  .plan-header:hover {
+    background: #ECFDF3;
+  }
+  h2.plan-title {
+    color: #003F2E;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 4px;
+  }
+  p.plan-sub {
+    color: #00593E;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.7;
+  }
+  .toggle-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #01A972;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    transition: transform 0.25s ease;
+  }
+  .plan-card.open .toggle-btn {
+    transform: rotate(45deg);
+  }
+
+  .adesao-note {
+    padding: 0 24px 18px;
+    margin: 0;
+    color: #00593E;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .adesao-note strong { color: #01A972; }
+
+  .toggle-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .plan-card.open .toggle-panel {
+    max-height: 900px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+  thead th {
+    background: #003F2E;
+    color: #B6FE80;
+    text-align: left;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    padding: 12px 24px;
+  }
+  thead th:last-child, tbody td:last-child {
+    text-align: right;
+  }
+  tbody td {
+    padding: 11px 24px;
+    color: #00593E;
+    border-bottom: 1px solid #ECFDF3;
+  }
+  tbody tr:nth-child(even) {
+    background: #ECFDF3;
+  }
+  tbody td.valor {
+    font-weight: 700;
+    color: #003F2E;
+  }
+
+  .single-value-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+  }
+  .single-value {
+    text-align: right;
+  }
+  .single-value .amount {
+    color: #01A972;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0;
+  }
+  .per {
+    color: #00593E;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+  .single-value-card p.valor {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #003F2E;
+  }
+
+  @media (max-width: 560px) {
+    #stage { padding: 32px 20px 60px; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tbody tr {
+      margin-bottom: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #ECFDF3;
+    }
+    tbody td {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: none;
+      padding: 8px 16px;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      color: #01A972;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="deco" style="width:80px; height:80px; background:#01A972; opacity:0.4; top:-20px; right:60px; animation-duration:5s;"></div>
+  <div class="deco" style="width:45px; height:45px; background:#B6FE80; opacity:0.4; top:220px; right:20px; animation-duration:4s; animation-delay:0.6s;"></div>
+  <div class="deco" style="width:30px; height:30px; background:#01A972; opacity:0.4; top:420px; left:20px; animation-duration:4.5s; animation-delay:1s;"></div>
+  <div class="deco" style="width:60px; height:60px; background:#B6FE80; opacity:0.35; bottom:60px; left:-10px; animation-duration:5.5s; animation-delay:0.3s;"></div>
+
+  <div id="content">
+
+    <p><strong>Para aderir aos benefícios é fácil!</strong> Nossos benefícios foram pensados para você. Aproveite!</p>
+
+    <div class="highlight">Receberemos as solicitações do dia <strong>01 a 20 do mês</strong>, e elas estarão ativas a partir do dia <strong>01 do mês subsequente</strong> ao solicitado.</div>
+
+    <p>Confira abaixo o valor dos benefícios com desconto em folha de pagamento. Clique em cada plano para ver a tabela completa.</p>
+
+    <!-- Plano Regional -->
+    <div class="plan-card" id="cardRegional">
+      <div class="plan-header" onclick="togglePlan('cardRegional')">
+        <div>
+          <h2 class="plan-title">Plano de Saúde — Regional</h2>
+          <p class="plan-sub">Os valores exibidos são de mensalidade integral. 30% do valor da tabela abaixo é descontado em folha de pagamento</p>
+        </div>
+        <div class="toggle-btn">+</div>
+      </div>
+      <div class="toggle-panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Idade Inicial</th>
+              <th>Idade Final</th>
+              <th>Valor da Mensalidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Idade Inicial">0</td><td data-label="Idade Final">18</td><td data-label="Valor da Mensalidade" class="valor">192,17</td></tr>
+            <tr><td data-label="Idade Inicial">19</td><td data-label="Idade Final">23</td><td data-label="Valor da Mensalidade" class="valor">192,17</td></tr>
+            <tr><td data-label="Idade Inicial">24</td><td data-label="Idade Final">28</td><td data-label="Valor da Mensalidade" class="valor">221,01</td></tr>
+            <tr><td data-label="Idade Inicial">29</td><td data-label="Idade Final">33</td><td data-label="Valor da Mensalidade" class="valor">221,01</td></tr>
+            <tr><td data-label="Idade Inicial">34</td><td data-label="Idade Final">38</td><td data-label="Valor da Mensalidade" class="valor">249,81</td></tr>
+            <tr><td data-label="Idade Inicial">39</td><td data-label="Idade Final">43</td><td data-label="Valor da Mensalidade" class="valor">337,22</td></tr>
+            <tr><td data-label="Idade Inicial">44</td><td data-label="Idade Final">48</td><td data-label="Valor da Mensalidade" class="valor">438,45</td></tr>
+            <tr><td data-label="Idade Inicial">49</td><td data-label="Idade Final">53</td><td data-label="Valor da Mensalidade" class="valor">570,00</td></tr>
+            <tr><td data-label="Idade Inicial">54</td><td data-label="Idade Final">58</td><td data-label="Valor da Mensalidade" class="valor">740,98</td></tr>
+            <tr><td data-label="Idade Inicial">59</td><td data-label="Idade Final">999</td><td data-label="Valor da Mensalidade" class="valor">963,28</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Plano Nacional -->
+    <div class="plan-card" id="cardNacional">
+      <div class="plan-header" onclick="togglePlan('cardNacional')">
+        <div>
+          <h2 class="plan-title">Plano de Saúde — Nacional</h2>
+          <p class="plan-sub">Os valores exibidos são de mensalidade integral. 30% do valor da tabela abaixo é descontado em folha de pagamento</p>
+        </div>
+        <div class="toggle-btn">+</div>
+      </div>
+      <div class="toggle-panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Idade Inicial</th>
+              <th>Idade Final</th>
+              <th>Valor da Mensalidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Idade Inicial">0</td><td data-label="Idade Final">18</td><td data-label="Valor da Mensalidade" class="valor">533,16</td></tr>
+            <tr><td data-label="Idade Inicial">19</td><td data-label="Idade Final">23</td><td data-label="Valor da Mensalidade" class="valor">533,16</td></tr>
+            <tr><td data-label="Idade Inicial">24</td><td data-label="Idade Final">28</td><td data-label="Valor da Mensalidade" class="valor">613,13</td></tr>
+            <tr><td data-label="Idade Inicial">29</td><td data-label="Idade Final">33</td><td data-label="Valor da Mensalidade" class="valor">613,13</td></tr>
+            <tr><td data-label="Idade Inicial">34</td><td data-label="Idade Final">38</td><td data-label="Valor da Mensalidade" class="valor">692,84</td></tr>
+            <tr><td data-label="Idade Inicial">39</td><td data-label="Idade Final">43</td><td data-label="Valor da Mensalidade" class="valor">935,33</td></tr>
+            <tr><td data-label="Idade Inicial">44</td><td data-label="Idade Final">48</td><td data-label="Valor da Mensalidade" class="valor">1.215,94</td></tr>
+            <tr><td data-label="Idade Inicial">49</td><td data-label="Idade Final">53</td><td data-label="Valor da Mensalidade" class="valor">1.580,73</td></tr>
+            <tr><td data-label="Idade Inicial">54</td><td data-label="Idade Final">58</td><td data-label="Valor da Mensalidade" class="valor">2.054,94</td></tr>
+            <tr><td data-label="Idade Inicial">59</td><td data-label="Idade Final">999</td><td data-label="Valor da Mensalidade" class="valor">2.671,41</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Plano Odontológico -->
+    <div class="plan-card" id="cardOdonto">
+      <div class="plan-header" onclick="togglePlan('cardOdonto')">
+        <div>
+          <h2 class="plan-title">Plano Odontológico — Regional</h2>
+          <p class="plan-sub">Disponível para Poços de Caldas. 50% do valor da mensalidade é descontado em folha de pagamento</p>
+        </div>
+        <div class="toggle-btn">+</div>
+      </div>
+      <div class="toggle-panel">
+        <div class="single-value-card">
+          <p class="per" style="text-align:left; margin:0;">Valor da mensalidade</p>
+          <p class="valor" style="margin:0;">38,49</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 8px;">Para aderir à Wellhub, Plano de Saúde e Plano Odontológico, clique no botão abaixo.</p>
+    <a class="cta-button" href="https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1uiA1KRQKJ7U_conzmv7qKsk_D3rU5SmZ/edit" target="_blank">Aderir aos benefícios →</a>
+
+  </div>
+</div>
+
+<script>
+  function togglePlan(id) {
+    var card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
