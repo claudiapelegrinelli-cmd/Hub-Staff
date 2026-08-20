@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>WeClever - Treinamentos Obrigatórios</title>
+<title>WeClever - Treinamentos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -10,132 +10,103 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: transparent;
+    background: #FFFFFF;
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
   }
-  #page {
+  #stage {
+    padding: 48px 40px 64px;
     box-sizing: border-box;
-    padding: 24px 20px 32px;
   }
-  #intro {
-    max-width: 900px;
-    margin: 0 auto 28px;
-  }
-  #intro p {
-    color: #00593E;
-    font-size: 16px;
-    line-height: 1.8;
-    margin: 0;
-  }
-  #frame {
-    box-sizing: border-box;
-    border: 1px solid rgba(182, 254, 128, 0.35);
-    border-radius: 24px;
-    padding: 6%;
-    width: 100%;
-    max-width: 900px;
+  #content {
+    max-width: 1080px;
     margin: 0 auto;
   }
-  #wrapper {
-    width: 100%;
+  .intro {
+    color: #003F2E;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 40px;
   }
-  #dots {
-    position: relative;
-    width: 100%;
-    padding-bottom: 31.71%; /* mant\u00e9m a propor\u00e7\u00e3o do canvas (260/820) */
-    height: 0;
-  }
-  .dot {
-    position: absolute;
-    border-radius: 50%;
+  .cards-row {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.15;
-    white-space: pre-line;
-    animation: floaty 3s ease-in-out infinite;
-    transition: transform 0.15s;
+    gap: 20px;
   }
-  .dot.clickable {
-    font-size: clamp(9px, 2.4vw, 14px);
-    font-weight: 800;
-    padding: 4%;
+  .training-card {
+    background: #F1F1F1;
+    border-left: 4px solid #BCBBBB;
+    border-radius: 12px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
-    background: #01A972 !important;
-    color: #B6FE80 !important;
+    display: flex;
+    flex-direction: column;
   }
-  @keyframes floaty {
-    0%, 100% { margin-top: 0px; }
-    50% { margin-top: -3%; }
+  .training-title {
+    color: #003F2E;
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .training-summary {
+    color: #00593E;
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    flex: 1 1 auto;
+  }
+  .training-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    color: #01A972;
+    font-weight: 800;
+    font-size: 14.5px;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+  .training-link:hover {
+    gap: 10px;
+    color: #003F2E;
   }
 </style>
 </head>
 <body>
 
-<div id="page">
-  <div id="intro">
-    <p>Antes de começar suas atividades na WeClever, complete os treinamentos abaixo. Eles garantem que você tenha a base necessária para atuar com segurança e alinhado às nossas práticas.</p>
-  </div>
+<div id="stage">
+  <div id="content">
 
-  <div id="frame">
-    <div id="wrapper">
-      <div id="dots"></div>
+    <p class="intro">Antes de começar suas atividades na WeClever, complete os treinamentos abaixo. Eles garantem que você tenha a base necessária para atuar com segurança e alinhado às nossas práticas.</p>
+
+    <div class="cards-row">
+
+      <div class="training-card">
+        <div class="training-title">Compliance</div>
+        <div class="training-summary">Boas práticas de proteção de dados e segurança da informação no dia a dia: como reconhecer phishing, compartilhar documentos com segurança, criar senhas fortes e agir com ética em situações reais de atendimento.</div>
+        <a class="training-link" href="https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1PBQ8hIkZLHsQyCxX2zt1M2K9svFvtvLo" target="_blank">Acessar treinamento →</a>
+      </div>
+
+      <div class="training-card">
+        <div class="training-title">Relações de Trabalho</div>
+        <div class="training-summary">Tudo sobre o seu vínculo com a WeClever: documentos de admissão, regras do contrato de estágio, horário flexível, equipamentos de trabalho e as datas de pagamento e benefícios que você precisa saber.</div>
+        <a class="training-link" href="https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1z0dnXEOuBcDA9Wuilbv3piFlr4nsR7Kh" target="_blank">Acessar treinamento →</a>
+      </div>
+
+      <div class="training-card">
+        <div class="training-title">Saúde Ocupacional</div>
+        <div class="training-summary">Saúde ocupacional pra gente não é só evitar acidentes — é garantir um ambiente seguro e saudável pra cuidar da sua saúde física e mental, esteja você onde estiver. Inclui a avaliação de NR17 (Ergonomia).</div>
+        <a class="training-link" href="https://sites.google.com/d/1TNhDiV2vzM_0B8qfEvN6KxiQDmSy7FeO/p/1wFUxDsdH-tfd0FJVtVhNqNKFL3qZ3qcE" target="_blank">Acessar treinamento →</a>
+      </div>
+
     </div>
   </div>
 </div>
-
-<script>
-/* ==========================================================
-   Bolinhas puramente ilustrativas — a navegação real é feita
-   pelo índice/menu do Google Sites, não por estas bolinhas.
-   ========================================================== */
-
-const dots = [
-  { x:150, y:130, r:110, color:'#B6FE80', topic:'Compliance' },
-  { x:410, y:130, r:110, color:'#B6FE80', topic:'Relações de\nTrabalho' },
-  { x:670, y:130, r:110, color:'#B6FE80', topic:'Saúde\nOcupacional' },
-];
-
-const decorative = [];
-
-const CANVAS_W = 820;
-const CANVAS_H = 260;
-const container = document.getElementById('dots');
-let delay = 0;
-
-function pct(val, total) {
-  return (val / total * 100) + '%';
-}
-
-decorative.forEach((d) => {
-  const el = document.createElement('div');
-  el.className = 'dot';
-  el.style.left = pct(d.x - d.r, CANVAS_W);
-  el.style.top = pct(d.y - d.r, CANVAS_H);
-  el.style.width = pct(d.r*2, CANVAS_W);
-  el.style.height = pct(d.r*2, CANVAS_H);
-  el.style.background = d.color;
-  el.style.animationDelay = delay + 's';
-  delay += 0.15;
-  container.appendChild(el);
-});
-
-dots.forEach((d) => {
-  const el = document.createElement('div');
-  el.className = 'dot clickable';
-  el.setAttribute('aria-label', d.topic);
-  el.style.left = pct(d.x - d.r, CANVAS_W);
-  el.style.top = pct(d.y - d.r, CANVAS_H);
-  el.style.width = pct(d.r*2, CANVAS_W);
-  el.style.height = pct(d.r*2, CANVAS_H);
-  el.style.animationDelay = delay + 's';
-  delay += 0.15;
-  el.innerHTML = d.topic.replace(/\n/g, '<br>');
-  container.appendChild(el);
-});
-</script>
 
 </body>
 </html>
